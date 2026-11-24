@@ -1,0 +1,1250 @@
+=================================================================
+ANÁLISE EXPERIMENTAL — TSP / BRANCH-AND-BOUND
+=================================================================
+
+=================================================================
+1. DIAGNÓSTICO GERAL DAS EXECUÇÕES
+=================================================================
+[OK] 01_resumo_execucoes.csv
+[OK] 02_instancias_com_timeout.csv
+[OK] 03_timeouts_por_instancia.csv
+
+Resumo de status:
+Total de execuções: 253
+Concluídas: 144
+Timeouts: 91
+Não aplicáveis: 18
+
+Atenção: timeout e não aplicável são categorias diferentes e não devem ser agrupadas.
+[OK] 04_execucoes_agregadas_mediana.csv
+
+=================================================================
+2. COMPLEXIDADE EMPÍRICA
+=================================================================
+[OK] regressao_BnB_trivial_tempo_total_s.csv
+[OK] Gráfico: regressao_BnB_trivial_tempo_total_s.png
+[OK] regressao_BnB_trivial_tempo_busca_s.csv
+[OK] Gráfico: regressao_BnB_trivial_tempo_busca_s.png
+[OK] regressao_BnB_trivial_nos_expandidos.csv
+[OK] Gráfico: regressao_BnB_trivial_nos_expandidos.png
+[OK] regressao_BnB_trivial_nos_podados.csv
+[OK] Gráfico: regressao_BnB_trivial_nos_podados.png
+[OK] regressao_BnB_vizinho_tempo_total_s.csv
+[OK] Gráfico: regressao_BnB_vizinho_tempo_total_s.png
+[OK] regressao_BnB_vizinho_tempo_busca_s.csv
+[OK] Gráfico: regressao_BnB_vizinho_tempo_busca_s.png
+[OK] regressao_BnB_vizinho_nos_expandidos.csv
+[OK] Gráfico: regressao_BnB_vizinho_nos_expandidos.png
+[OK] regressao_BnB_vizinho_nos_podados.csv
+[OK] Gráfico: regressao_BnB_vizinho_nos_podados.png
+[AVISO] BnB_fecho: apenas 2 instâncias. Regressão não realizada.
+[AVISO] BnB_fecho: apenas 2 instâncias. Regressão não realizada.
+[AVISO] BnB_fecho: apenas 2 instâncias. Regressão não realizada.
+[AVISO] BnB_fecho: apenas 2 instâncias. Regressão não realizada.
+[OK] regressao_BnB_TAT_tempo_total_s.csv
+[OK] Gráfico: regressao_BnB_TAT_tempo_total_s.png
+[OK] regressao_BnB_TAT_tempo_busca_s.csv
+[OK] Gráfico: regressao_BnB_TAT_tempo_busca_s.png
+[OK] regressao_BnB_TAT_nos_expandidos.csv
+[OK] Gráfico: regressao_BnB_TAT_nos_expandidos.png
+[OK] regressao_BnB_TAT_nos_podados.csv
+[OK] Gráfico: regressao_BnB_TAT_nos_podados.png
+[OK] regressao_BnB_CHR_tempo_total_s.csv
+[OK] Gráfico: regressao_BnB_CHR_tempo_total_s.png
+[OK] regressao_BnB_CHR_tempo_busca_s.csv
+[OK] Gráfico: regressao_BnB_CHR_tempo_busca_s.png
+[OK] regressao_BnB_CHR_nos_expandidos.csv
+[OK] Gráfico: regressao_BnB_CHR_nos_expandidos.png
+[OK] regressao_BnB_CHR_nos_podados.csv
+[OK] Gráfico: regressao_BnB_CHR_nos_podados.png
+[OK] regressao_BnB_trivial_memoria.csv
+[OK] Gráfico: regressao_BnB_trivial_memoria.png
+[OK] regressao_BnB_vizinho_memoria.csv
+[OK] Gráfico: regressao_BnB_vizinho_memoria.png
+[AVISO] BnB_fecho: apenas 2 instâncias. Regressão não realizada.
+[OK] regressao_BnB_TAT_memoria.csv
+[OK] Gráfico: regressao_BnB_TAT_memoria.png
+[OK] regressao_BnB_CHR_memoria.csv
+[OK] Gráfico: regressao_BnB_CHR_memoria.png
+[OK] regressao_TAT_tempo.csv
+[OK] Gráfico: regressao_TAT_tempo.png
+[OK] regressao_TAT_memoria.csv
+[OK] Gráfico: regressao_TAT_memoria.png
+[OK] regressao_CHR_tempo.csv
+[OK] Gráfico: regressao_CHR_tempo.png
+[OK] regressao_CHR_memoria.csv
+[OK] Gráfico: regressao_CHR_memoria.png
+[OK] 05_comparacao_modelos_complexidade.csv
+
+Os ajustes descrevem tendências empíricas das instâncias observadas. Não demonstram, isoladamente, a complexidade assintótica dos algoritmos.
+
+=================================================================
+3. CUSTO POR NÓ E EFICIÊNCIA DE BUSCA
+=================================================================
+[OK] 06_custo_por_no_por_instancia.csv
+[OK] 07_resumo_custo_por_no.csv
+
+Resumo de custo por nó (medianas por estratégia):
+estrategia_warmstart  mediana_us_por_no_total  mediana_us_por_no_busca  mediana_proporcao_poda  instancias  repeticoes
+                 CHR                 375.2051                 374.9106                  0.8705           4          12
+                 TAT                 359.7673                 359.7126                  0.8683           4          12
+               fecho                 363.0328                 362.9321                  0.8624           2           6
+             trivial                 372.0705                 372.0650                  0.8683           4          12
+             vizinho                 367.6046                 367.5903                  0.8683           4          12
+[OK] Gráfico: custo_por_no.png
+
+=================================================================
+4. COMPARAÇÃO PAREADA DOS WARM-STARTS
+=================================================================
+[OK] 08_warmstarts_por_instancia.csv
+[OK] 09_comparacao_warmstarts_vs_trivial.csv
+vizinho: 4 instâncias concluídas; trivial: 4; pares válidos: 4.
+fecho: 2 instâncias concluídas; trivial: 4; pares válidos: 2.
+  A estratégia fecho concluiu menos instâncias que trivial.
+TAT: 4 instâncias concluídas; trivial: 4; pares válidos: 4.
+CHR: 4 instâncias concluídas; trivial: 4; pares válidos: 4.
+
+=================================================================
+5. QUALIDADE DAS HEURÍSTICAS DE APROXIMAÇÃO
+=================================================================
+[OK] 10_qualidade_aproximacao_por_instancia.csv
+[OK] 11_resumo_qualidade_aproximacao.csv
+[OK] Gráfico: gap_aproximacao.png
+[OK] Gráfico: tempo_aproximacao.png
+
+=================================================================
+6. VIOLAÇÕES TRIANGULARES
+=================================================================
+[OK] 12_resumo_violacoes_triangulares.csv
+[OK] 13_violacoes_por_tipo_distancia.csv
+ instancias_total  instancias_aplicaveis_verificacao_real  instancias_com_violacao_real  instancias_com_violacao_arredondada  proporcao_violacao_real
+               12                                       2                             0                                    7                      0.0
+
+Sensibilidade — instâncias com gap TAT: 12
+Sensibilidade — instâncias com gap CHR: 12
+Sensibilidade — linhas de features antes da junção: 12
+Sensibilidade — linhas depois da junção: 12
+Instâncias de features preservadas na junção: 12 de 12
+
+Instâncias excluídas por tem_coordenadas=False:
+  gr17: matriz EXPLICIT, sem coordenadas
+  gr21: matriz EXPLICIT, sem coordenadas
+  gr24: matriz EXPLICIT, sem coordenadas
+  fri26: matriz EXPLICIT, sem coordenadas
+  bayg29: matriz EXPLICIT, sem coordenadas
+  bays29: matriz EXPLICIT, sem coordenadas
+
+Instâncias GEO/ATT — features calculadas sobre coordenadas não euclidianas:
+  burma14: GEO
+  ulysses16: GEO
+  ulysses22: GEO
+  att48: ATT
+
+=================================================================
+7. ANÁLISE DE SENSIBILIDADE — CORRELAÇÕES SPEARMAN
+=================================================================
+
+TAT — correlação entre features e gap
+  razao_aspecto: rho=-0.8117, p=0.0728, n=6 (empates na feature)
+  prop_fecho_convexo: rho=-0.7714, p=0.1104, n=6 ()
+  entropia_espacial: rho=0.7714, p=0.1112, n=6 ()
+  densidade_clustering: rho=-0.9429, p=0.0166, n=6 ()
+  grau_max_mst: rho=0.2928, p=0.7012, n=6 (empates na feature)
+  cv_dist_vizinho_proximo: rho=-0.5429, p=0.3052, n=6 ()
+  dist_media: rho=0.7143, p=0.1394, n=6 ()
+  dist_desvio: rho=0.7143, p=0.1394, n=6 ()
+
+CHR — correlação entre features e gap
+  razao_aspecto: rho=-0.8986, p=0.0268, n=6 (empates na feature)
+  prop_fecho_convexo: rho=-1.0000, p=0.0014, n=6 ()
+  entropia_espacial: rho=0.8857, p=0.0332, n=6 ()
+  densidade_clustering: rho=-0.8286, p=0.0608, n=6 ()
+  grau_max_mst: rho=0.2928, p=0.6872, n=6 (empates na feature)
+  cv_dist_vizinho_proximo: rho=-0.6000, p=0.2412, n=6 ()
+  dist_media: rho=0.6000, p=0.2432, n=6 ()
+  dist_desvio: rho=0.6000, p=0.2432, n=6 ()
+[OK] 14_spearman_features_gap.csv
+
+Interpretação: correlações são indícios de associação, não evidência de causalidade.
+
+=================================================================
+9. PROFILING DE SUBROTINAS
+=================================================================
+[OK] 18_participacao_tempo_profiling.csv
+
+CHR — frações por instância (% do tempo total):
+subrotina  atalhos  emparelhamento  euler  grau_mst  prim_mst  validar_e_custo
+instancia                                                                     
+att48         0.03           95.10   0.33      0.04      3.92             0.16
+bayg29        0.09           79.92   0.92      0.14     17.21             0.41
+bays29        0.07           83.15   0.77      0.13     14.53             0.34
+berlin52      0.05           90.65   0.63      0.08      7.70             0.26
+burma14       0.17           74.04   1.97      0.39     20.35             0.93
+fri26         0.05           91.46   0.72      0.07      6.71             0.28
+gr17          0.14           75.55   1.62      0.22     20.06             0.62
+gr21          0.13           77.48   1.51      0.22     18.25             0.55
+gr24          0.12           79.36   1.37      0.20     17.14             0.47
+st70          0.02           94.78   0.28      0.03      4.36             0.17
+ulysses16     0.16           74.59   1.79      0.28     20.02             0.71
+ulysses22     0.13           78.88   1.47      0.21     17.42             0.50
+Fração de emparelhamento por instância (CHR):
+instancia
+att48       95.10%
+bayg29      79.92%
+bays29      83.15%
+berlin52    90.65%
+burma14     74.04%
+fri26       91.46%
+gr17        75.55%
+gr21        77.48%
+gr24        79.36%
+st70        94.78%
+ulysses16   74.59%
+ulysses22   78.88%
+
+TAT — frações por instância (% do tempo total):
+subrotina  atalhos  grau_mst  prim_mst  validar_e_custo
+instancia                                              
+att48         1.24      0.55     95.55             1.17
+bayg29        2.37      0.86     91.48             2.52
+bays29        2.06      0.77     91.92             2.29
+berlin52      2.72      1.01     90.36             2.70
+burma14       2.65      1.42     88.63             2.80
+fri26         2.60      1.08     90.80             2.29
+gr17          2.61      1.08     89.49             2.37
+gr21          2.35      1.04     90.36             2.26
+gr24          2.45      1.25     90.62             2.30
+st70          2.34      0.71     91.83             2.45
+ulysses16     2.48      1.12     88.47             2.31
+ulysses22     2.49      1.10     90.16             2.42
+
+BnB — fração de cada subrotina em relação a busca_total (%; subrotinas aninhadas, não somar):
+instancia estrategia           subrotina  fracao_tempo_percentual
+    att48        CHR         busca_total               100.000000
+    att48        CHR busca_total_externa               100.005652
+    att48        CHR          calculo_lb                94.505381
+    att48        CHR         expansao_no                99.300199
+    att48        CHR      matriz_reducao                61.600525
+    att48        CHR           warmstart                 0.001793
+    att48        TAT         busca_total               100.001187
+    att48        TAT busca_total_externa               100.006515
+    att48        TAT          calculo_lb                94.292291
+    att48        TAT         expansao_no                99.190589
+    att48        TAT      matriz_reducao                60.322804
+    att48        TAT           warmstart                 0.000513
+    att48      fecho         busca_total               100.001406
+    att48      fecho busca_total_externa               100.008958
+    att48      fecho          calculo_lb                94.953411
+    att48      fecho         expansao_no                99.501578
+    att48      fecho      matriz_reducao                62.476582
+    att48      fecho           warmstart                 0.000482
+    att48    trivial         busca_total               100.001582
+    att48    trivial busca_total_externa               100.002857
+    att48    trivial          calculo_lb                94.676286
+    att48    trivial         expansao_no                99.356293
+    att48    trivial      matriz_reducao                60.200263
+    att48    trivial           warmstart                 0.000003
+    att48    vizinho         busca_total               100.001589
+    att48    vizinho busca_total_externa               100.003924
+    att48    vizinho          calculo_lb                94.480783
+    att48    vizinho         expansao_no                99.260213
+    att48    vizinho      matriz_reducao                60.731404
+    att48    vizinho           warmstart                 0.000068
+   bayg29        CHR         busca_total               100.000000
+   bayg29        CHR busca_total_externa               100.000777
+   bayg29        CHR          calculo_lb                94.414343
+   bayg29        CHR         expansao_no                99.554799
+   bayg29        CHR      matriz_reducao                63.956834
+   bayg29        CHR           warmstart                 0.000189
+   bayg29        TAT         busca_total               100.000152
+   bayg29        TAT busca_total_externa               100.000835
+   bayg29        TAT          calculo_lb                94.480309
+   bayg29        TAT         expansao_no                99.557915
+   bayg29        TAT      matriz_reducao                64.145637
+   bayg29        TAT           warmstart                 0.000041
+   bayg29    trivial         busca_total               100.000218
+   bayg29    trivial busca_total_externa               100.000874
+   bayg29    trivial          calculo_lb                94.227228
+   bayg29    trivial         expansao_no                99.547135
+   bayg29    trivial      matriz_reducao                64.350696
+   bayg29    trivial           warmstart                 0.000002
+   bayg29    vizinho         busca_total               100.000151
+   bayg29    vizinho busca_total_externa               100.000851
+   bayg29    vizinho          calculo_lb                94.457707
+   bayg29    vizinho         expansao_no                99.548966
+   bayg29    vizinho      matriz_reducao                64.065997
+   bayg29    vizinho           warmstart                 0.000013
+   bays29        CHR         busca_total               100.000000
+   bays29        CHR busca_total_externa               100.000872
+   bays29        CHR          calculo_lb                94.052525
+   bays29        CHR         expansao_no                99.364390
+   bays29        CHR      matriz_reducao                62.947099
+   bays29        CHR           warmstart                 0.000315
+   bays29        TAT         busca_total               100.000276
+   bays29        TAT busca_total_externa               100.000906
+   bays29        TAT          calculo_lb                93.911836
+   bays29        TAT         expansao_no                99.337379
+   bays29        TAT      matriz_reducao                62.277247
+   bays29        TAT           warmstart                 0.000039
+   bays29    trivial         busca_total               100.000381
+   bays29    trivial busca_total_externa               100.001112
+   bays29    trivial          calculo_lb                94.074493
+   bays29    trivial         expansao_no                99.335534
+   bays29    trivial      matriz_reducao                62.906818
+   bays29    trivial           warmstart                 0.000003
+   bays29    vizinho         busca_total               100.000312
+   bays29    vizinho busca_total_externa               100.000908
+   bays29    vizinho          calculo_lb                93.987458
+   bays29    vizinho         expansao_no                99.357706
+   bays29    vizinho      matriz_reducao                62.300260
+   bays29    vizinho           warmstart                 0.000012
+ berlin52        CHR         busca_total               100.000000
+ berlin52        CHR busca_total_externa               100.004725
+ berlin52        CHR          calculo_lb                95.264653
+ berlin52        CHR         expansao_no                99.565896
+ berlin52        CHR      matriz_reducao                63.551378
+ berlin52        CHR           warmstart                 0.000398
+ berlin52        TAT         busca_total               100.000337
+ berlin52        TAT busca_total_externa               100.004751
+ berlin52        TAT          calculo_lb                94.081076
+ berlin52        TAT         expansao_no                99.115978
+ berlin52        TAT      matriz_reducao                59.375735
+ berlin52        TAT           warmstart                 0.000035
+ berlin52      fecho         busca_total                99.999450
+ berlin52      fecho busca_total_externa               100.004801
+ berlin52      fecho          calculo_lb                95.284246
+ berlin52      fecho         expansao_no                99.585293
+ berlin52      fecho      matriz_reducao                63.591292
+ berlin52      fecho           warmstart                 0.000930
+ berlin52    trivial         busca_total               100.000375
+ berlin52    trivial busca_total_externa               100.004790
+ berlin52    trivial          calculo_lb                94.229641
+ berlin52    trivial         expansao_no                99.134385
+ berlin52    trivial      matriz_reducao                58.960338
+ berlin52    trivial           warmstart                 0.000002
+ berlin52    vizinho         busca_total               100.000344
+ berlin52    vizinho busca_total_externa               100.005948
+ berlin52    vizinho          calculo_lb                95.004809
+ berlin52    vizinho         expansao_no                99.497796
+ berlin52    vizinho      matriz_reducao                62.204140
+ berlin52    vizinho           warmstart                 0.000026
+  burma14        CHR         busca_total               100.000000
+  burma14        CHR busca_total_externa               101.447939
+  burma14        CHR          calculo_lb                93.653008
+  burma14        CHR         expansao_no                98.949358
+  burma14        CHR      matriz_reducao                64.786796
+  burma14        CHR           warmstart                 0.161525
+  burma14        TAT         busca_total               109.590248
+  burma14        TAT busca_total_externa               111.018919
+  burma14        TAT          calculo_lb               102.429103
+  burma14        TAT         expansao_no               108.392168
+  burma14        TAT      matriz_reducao                70.860589
+  burma14        TAT           warmstart                 0.036993
+  burma14      fecho         busca_total                83.754209
+  burma14      fecho busca_total_externa                85.259190
+  burma14      fecho          calculo_lb                78.358057
+  burma14      fecho         expansao_no                82.839222
+  burma14      fecho      matriz_reducao                54.352798
+  burma14      fecho           warmstart                 0.043053
+  burma14    trivial         busca_total               117.102618
+  burma14    trivial busca_total_externa               118.666813
+  burma14    trivial          calculo_lb               109.335046
+  burma14    trivial         expansao_no               115.701914
+  burma14    trivial      matriz_reducao                75.506276
+  burma14    trivial           warmstart                 0.002748
+  burma14    vizinho         busca_total               114.337855
+  burma14    vizinho busca_total_externa               115.821048
+  burma14    vizinho          calculo_lb               106.956882
+  burma14    vizinho         expansao_no               113.077682
+  burma14    vizinho      matriz_reducao                74.213846
+  burma14    vizinho           warmstart                 0.012990
+    fri26        CHR         busca_total               100.000000
+    fri26        CHR busca_total_externa               100.001045
+    fri26        CHR          calculo_lb                94.848649
+    fri26        CHR         expansao_no                99.501793
+    fri26        CHR      matriz_reducao                66.060850
+    fri26        CHR           warmstart                 0.000241
+    fri26        TAT         busca_total               100.000193
+    fri26        TAT busca_total_externa               100.000905
+    fri26        TAT          calculo_lb                94.959799
+    fri26        TAT         expansao_no                99.513639
+    fri26        TAT      matriz_reducao                66.181079
+    fri26        TAT           warmstart                 0.000031
+    fri26    trivial         busca_total               100.000221
+    fri26    trivial busca_total_externa               100.000896
+    fri26    trivial          calculo_lb                94.905377
+    fri26    trivial         expansao_no                99.503972
+    fri26    trivial      matriz_reducao                66.334975
+    fri26    trivial           warmstart                 0.000002
+    fri26    vizinho         busca_total               100.000221
+    fri26    vizinho busca_total_externa               100.000917
+    fri26    vizinho          calculo_lb                95.050150
+    fri26    vizinho         expansao_no                99.508411
+    fri26    vizinho      matriz_reducao                66.315214
+    fri26    vizinho           warmstart                 0.000010
+     gr17        CHR         busca_total               100.000000
+     gr17        CHR busca_total_externa               100.009414
+     gr17        CHR          calculo_lb                94.211091
+     gr17        CHR         expansao_no                99.220246
+     gr17        CHR      matriz_reducao                65.167545
+     gr17        CHR           warmstart                 0.001207
+     gr17        TAT         busca_total                99.807269
+     gr17        TAT busca_total_externa                99.815528
+     gr17        TAT          calculo_lb                93.867702
+     gr17        TAT         expansao_no                99.011727
+     gr17        TAT      matriz_reducao                65.076279
+     gr17        TAT           warmstart                 0.000246
+     gr17    trivial         busca_total                99.819937
+     gr17    trivial busca_total_externa                99.828042
+     gr17    trivial          calculo_lb                93.916721
+     gr17    trivial         expansao_no                99.037489
+     gr17    trivial      matriz_reducao                65.175136
+     gr17    trivial           warmstart                 0.000016
+     gr17    vizinho         busca_total                99.796410
+     gr17    vizinho busca_total_externa                99.804521
+     gr17    vizinho          calculo_lb                93.939764
+     gr17    vizinho         expansao_no                99.004361
+     gr17    vizinho      matriz_reducao                65.078307
+     gr17    vizinho           warmstart                 0.000070
+     gr21        CHR         busca_total               100.000000
+     gr21        CHR busca_total_externa               100.112043
+     gr21        CHR          calculo_lb                94.720521
+     gr21        CHR         expansao_no                99.441623
+     gr21        CHR      matriz_reducao                66.508949
+     gr21        CHR           warmstart                 0.016408
+     gr21        TAT         busca_total               100.984776
+     gr21        TAT busca_total_externa               101.082310
+     gr21        TAT          calculo_lb                95.573520
+     gr21        TAT         expansao_no               100.410546
+     gr21        TAT      matriz_reducao                67.085623
+     gr21        TAT           warmstart                 0.003135
+     gr21    trivial         busca_total               100.916272
+     gr21    trivial busca_total_externa               101.010462
+     gr21    trivial          calculo_lb                95.587614
+     gr21    trivial         expansao_no               100.347015
+     gr21    trivial      matriz_reducao                67.277014
+     gr21    trivial           warmstart                 0.000193
+     gr21    vizinho         busca_total               100.682716
+     gr21    vizinho busca_total_externa               100.777564
+     gr21    vizinho          calculo_lb                95.243008
+     gr21    vizinho         expansao_no               100.117274
+     gr21    vizinho      matriz_reducao                66.892464
+     gr21    vizinho           warmstart                 0.001033
+     gr24        CHR         busca_total               100.000000
+     gr24        CHR busca_total_externa               100.000826
+     gr24        CHR          calculo_lb                94.739703
+     gr24        CHR         expansao_no                99.440788
+     gr24        CHR      matriz_reducao                66.005973
+     gr24        CHR           warmstart                 0.000144
+     gr24        TAT         busca_total               100.000118
+     gr24        TAT busca_total_externa               100.000820
+     gr24        TAT          calculo_lb                94.794535
+     gr24        TAT         expansao_no                99.439584
+     gr24        TAT      matriz_reducao                66.064525
+     gr24        TAT           warmstart                 0.000025
+     gr24    trivial         busca_total               100.000129
+     gr24    trivial busca_total_externa               100.000810
+     gr24    trivial          calculo_lb                94.779575
+     gr24    trivial         expansao_no                99.440617
+     gr24    trivial      matriz_reducao                66.100079
+     gr24    trivial           warmstart                 0.000002
+     gr24    vizinho         busca_total               100.000121
+     gr24    vizinho busca_total_externa               100.000807
+     gr24    vizinho          calculo_lb                94.750025
+     gr24    vizinho         expansao_no                99.440507
+     gr24    vizinho      matriz_reducao                66.141396
+     gr24    vizinho           warmstart                 0.000009
+     st70        CHR         busca_total               100.000000
+     st70        CHR busca_total_externa               100.014665
+     st70        CHR          calculo_lb                95.570652
+     st70        CHR         expansao_no                99.540236
+     st70        CHR      matriz_reducao                61.267629
+     st70        CHR           warmstart                 0.001300
+     st70        TAT         busca_total               100.001213
+     st70        TAT busca_total_externa               100.014510
+     st70        TAT          calculo_lb                94.433936
+     st70        TAT         expansao_no                99.132601
+     st70        TAT      matriz_reducao                58.789844
+     st70        TAT           warmstart                 0.000054
+     st70      fecho         busca_total                99.998960
+     st70      fecho busca_total_externa               100.014467
+     st70      fecho          calculo_lb                96.090155
+     st70      fecho         expansao_no                99.723415
+     st70      fecho      matriz_reducao                64.834141
+     st70      fecho           warmstart                 0.002333
+     st70    trivial         busca_total               100.001259
+     st70    trivial busca_total_externa               100.014532
+     st70    trivial          calculo_lb                94.402708
+     st70    trivial         expansao_no                99.114891
+     st70    trivial      matriz_reducao                58.825312
+     st70    trivial           warmstart                 0.000002
+     st70    vizinho         busca_total               100.001206
+     st70    vizinho busca_total_externa               100.014854
+     st70    vizinho          calculo_lb                94.733932
+     st70    vizinho         expansao_no                99.258898
+     st70    vizinho      matriz_reducao                59.236863
+     st70    vizinho           warmstart                 0.000053
+ulysses16        CHR         busca_total               100.000000
+ulysses16        CHR busca_total_externa               100.017901
+ulysses16        CHR          calculo_lb                93.787713
+ulysses16        CHR         expansao_no                99.066952
+ulysses16        CHR      matriz_reducao                64.714632
+ulysses16        CHR           warmstart                 0.002033
+ulysses16        TAT         busca_total                98.380937
+ulysses16        TAT busca_total_externa                98.397402
+ulysses16        TAT          calculo_lb                92.370615
+ulysses16        TAT         expansao_no                97.485418
+ulysses16        TAT      matriz_reducao                63.772885
+ulysses16        TAT           warmstart                 0.000455
+ulysses16      fecho         busca_total               100.064819
+ulysses16      fecho busca_total_externa               100.081158
+ulysses16      fecho          calculo_lb                93.978783
+ulysses16      fecho         expansao_no                99.150466
+ulysses16      fecho      matriz_reducao                64.853621
+ulysses16      fecho           warmstart                 0.000649
+ulysses16    trivial         busca_total               101.499906
+ulysses16    trivial busca_total_externa               101.515758
+ulysses16    trivial          calculo_lb                95.288265
+ulysses16    trivial         expansao_no               100.565226
+ulysses16    trivial      matriz_reducao                65.742127
+ulysses16    trivial           warmstart                 0.000028
+ulysses16    vizinho         busca_total               100.279493
+ulysses16    vizinho busca_total_externa               100.295351
+ulysses16    vizinho          calculo_lb                94.067782
+ulysses16    vizinho         expansao_no                99.359723
+ulysses16    vizinho      matriz_reducao                64.756405
+ulysses16    vizinho           warmstart                 0.000117
+ulysses22        CHR         busca_total               100.000000
+ulysses22        CHR busca_total_externa               100.000840
+ulysses22        CHR          calculo_lb                94.381261
+ulysses22        CHR         expansao_no                99.331304
+ulysses22        CHR      matriz_reducao                65.107125
+ulysses22        CHR           warmstart                 0.000135
+ulysses22        TAT         busca_total               100.000103
+ulysses22        TAT busca_total_externa               100.000800
+ulysses22        TAT          calculo_lb                94.462929
+ulysses22        TAT         expansao_no                99.334325
+ulysses22        TAT      matriz_reducao                65.234872
+ulysses22        TAT           warmstart                 0.000024
+ulysses22      fecho         busca_total               100.000047
+ulysses22      fecho busca_total_externa               100.000789
+ulysses22      fecho          calculo_lb                94.556331
+ulysses22      fecho         expansao_no                99.351677
+ulysses22      fecho      matriz_reducao                65.298310
+ulysses22      fecho           warmstart                 0.000076
+ulysses22    trivial         busca_total               100.000129
+ulysses22    trivial busca_total_externa               100.000799
+ulysses22    trivial          calculo_lb                94.443865
+ulysses22    trivial         expansao_no                99.337533
+ulysses22    trivial      matriz_reducao                65.106538
+ulysses22    trivial           warmstart                 0.000002
+ulysses22    vizinho         busca_total               100.000129
+ulysses22    vizinho busca_total_externa               100.000815
+ulysses22    vizinho          calculo_lb                94.426365
+ulysses22    vizinho         expansao_no                99.341235
+ulysses22    vizinho      matriz_reducao                65.109395
+ulysses22    vizinho           warmstart                 0.000008
+busca_total_externa inclui overhead do processo.
+[OK] 19_limitacoes_amostra.txt
+
+
+==============================================================================
+                    RELATÓRIO GERAL DOS EXPERIMENTOS
+                         TSP / BRANCH-AND-BOUND
+==============================================================================
+
+[0] AMBIENTE DE EXECUÇÃO
+
+Configuração da máquina utilizada nos experimentos
+-----------------------------------------------------------------
+                         ambiente_id                             data       sistema_operacional                                                 cpu  nucleos_fisicos  nucleos_logicos  ram_GB python_versao numpy_versao  networkx_versao    modo  workers
+22f91773-ba79-45e9-b987-9e5acfe41ce3 2026-11-23T22:30:02.477569-03:00 Windows-11-10.0.26200-SP0  AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD                8               16 31.3851        3.13.1        2.3.5           3.7000   tempo        1
+0394423f-6f5c-4e31-95e4-cdb5a1e46621 2026-11-23T22:15:37.600739-03:00 Windows-11-10.0.26300-SP0 Intel64 Family 6 Model 126 Stepping 5, GenuineIntel                2                4 15.7452        3.15.2        2.5.5           3.7000 memoria        1
+ab60fca9-36d0-4ddc-ab4c-0e1d2a140ab4 2026-11-23T22:43:14.734498-03:00 Windows-10-10.0.19045-SP0  Intel64 Family 6 Model 60 Stepping 3, GenuineIntel                4                8 15.9235        3.15.2        2.5.5           3.7000 memoria        1
+[OK] 00_ambiente_execucao.csv
+
+[1] VISÃO GERAL
+Instâncias: 12; tamanhos N: 11; execuções: 253; OK: 144; timeouts: 91; não aplicáveis: 18
+
+[2] EXECUÇÕES POR ALGORITMO E MODO
+-----------------------------------------------------------------
+algoritmo    modo  exec  OK  timeouts
+      BnB memoria    60  18        36
+      BnB   tempo   121  54        55
+      CHR memoria    12  12         0
+      CHR   tempo    24  24         0
+      TAT memoria    12  12         0
+      TAT   tempo    24  24         0
+
+[3] CUSTO POR NÓ E EFICIÊNCIA DE BUSCA
+
+Medianas por estratégia
+-----------------------------------------------------------------
+estrategia_warmstart  mediana_us_por_no_total  mediana_us_por_no_busca  mediana_proporcao_poda  instancias  repeticoes
+                 CHR                 375.2051                 374.9106                  0.8705           4          12
+                 TAT                 359.7673                 359.7126                  0.8683           4          12
+               fecho                 363.0328                 362.9321                  0.8624           2           6
+             trivial                 372.0705                 372.0650                  0.8683           4          12
+             vizinho                 367.6046                 367.5903                  0.8683           4          12
+
+[4] WARM-START PAREADO — somente pares OK
+
+Comparação por instância
+-----------------------------------------------------------------
+instancia  N estrategia  nos_expandidos_trivial  nos_expandidos_estrategia  reducao_nos_percentual  tempo_total_trivial_s  tempo_total_estrategia_s  memoria_trivial_MB  memoria_estrategia_MB  repeticoes_trivial  repeticoes_estrategia
+  burma14 14    vizinho               2863.0000                  2863.0000                  0.0000                 1.0926                    1.0664              0.0697                 0.0801                   3                      3
+     gr17 17    vizinho             406037.0000                405694.0000                  0.0845               147.1924                  147.1577              0.1321                 0.1319                   3                      3
+     gr21 21    vizinho              21715.0000                 21712.0000                  0.0138                12.8144                   12.7848              0.2130                 0.2131                   3                      3
+ulysses16 16    vizinho             231317.0000                231317.0000                  0.0000                77.6024                   76.6694              0.1064                 0.1124                   3                      3
+  burma14 14      fecho               2863.0000                  1986.0000                 30.6322                 1.0926                    0.7850              0.0697                 0.0700                   3                      3
+ulysses16 16      fecho             231317.0000                231282.0000                  0.0151                77.6024                   76.5057              0.1064                 0.1118                   3                      3
+  burma14 14        TAT               2863.0000                  2863.0000                  0.0000                 1.0926                    1.0222              0.0697                 0.0804                   3                      3
+     gr17 17        TAT             406037.0000                405999.0000                  0.0094               147.1924                  147.1739              0.1321                 0.1326                   3                      3
+     gr21 21        TAT              21715.0000                 21714.0000                  0.0046                12.8144                   12.8235              0.2130                 0.2141                   3                      3
+ulysses16 16        TAT             231317.0000                231317.0000                  0.0000                77.6024                   75.2186              0.1064                 0.1130                   3                      3
+  burma14 14        CHR               2863.0000                  2414.0000                 15.6829                 1.0926                    0.9341              0.0697                 0.0975                   3                      3
+     gr17 17        CHR             406037.0000                405698.0000                  0.0835               147.1924                  147.4598              0.1321                 0.1548                   3                      3
+     gr21 21        CHR              21715.0000                 21409.0000                  1.4092                12.8144                   12.7004              0.2130                 0.2338                   3                      3
+ulysses16 16        CHR             231317.0000                231285.0000                  0.0138                77.6024                   76.4574              0.1064                 0.1331                   3                      3
+
+Timeouts BnB no modo memória por estratégia
+-----------------------------------------------------------------
+estrategia_warmstart  timeouts_memoria  instancias
+                 CHR                 8           8
+                 TAT                 8           8
+               fecho                 4           4
+             trivial                 8           8
+             vizinho                 8           8
+
+[5] HEURÍSTICAS APROXIMATIVAS
+
+Medianas por instância (com número de repetições)
+-----------------------------------------------------------------
+instancia  N algoritmo  gap_mediano  tempo_mediano_s  repeticoes
+    att48 48       CHR       0.0837           0.0159           1
+    att48 48       TAT       0.3103           0.0018           1
+   bayg29 29       CHR       0.0789           0.0036           1
+   bayg29 29       TAT       0.3621           0.0007           1
+   bays29 29       CHR       0.1099           0.0041           1
+   bays29 29       TAT       0.3252           0.0006           1
+ berlin52 52       CHR       0.0911           0.0070           1
+ berlin52 52       TAT       0.3792           0.0005           1
+  burma14 14       CHR       0.0376           0.0018           3
+  burma14 14       TAT       0.2046           0.0004           3
+    fri26 26       CHR       0.0416           0.0080           1
+    fri26 26       TAT       0.2124           0.0006           1
+     gr17 17       CHR       0.0504           0.0018           3
+     gr17 17       TAT       0.1281           0.0004           3
+     gr21 21       CHR       0.0277           0.0021           3
+     gr21 21       TAT       0.3809           0.0004           3
+     gr24 24       CHR       0.1061           0.0026           3
+     gr24 24       TAT       0.2901           0.0005           3
+     st70 70       CHR       0.1096           0.0208           1
+     st70 70       TAT       0.2948           0.0010           1
+ulysses16 16       CHR       0.0184           0.0016           3
+ulysses16 16       TAT       0.1354           0.0004           3
+ulysses22 22       CHR       0.0620           0.0022           3
+ulysses22 22       TAT       0.1847           0.0004           3
+
+[6] MODELOS DE REGRESSÃO EMPÍRICA — todos os modelos
+
+R² e RMSE por série/modelo
+-----------------------------------------------------------------
+             grupo         metrica  modelo  r2_escala_original  rmse_escala_original  n_pontos  n_repeticoes_mediana_total
+       BnB_trivial   tempo_total_s       N              0.0025               58.2553         4                          12
+       BnB_trivial   tempo_total_s      N²              0.0116               57.9899         4                          12
+       BnB_trivial   tempo_total_s      N³              0.0257               57.5721         4                          12
+       BnB_trivial   tempo_total_s N log N              0.0043               58.2036         4                          12
+       BnB_trivial   tempo_busca_s       N              0.0025               58.2553         4                          12
+       BnB_trivial   tempo_busca_s      N²              0.0116               57.9899         4                          12
+       BnB_trivial   tempo_busca_s      N³              0.0257               57.5721         4                          12
+       BnB_trivial   tempo_busca_s N log N              0.0043               58.2036         4                          12
+       BnB_trivial  nos_expandidos       N              0.0082           164631.3739         4                          12
+       BnB_trivial  nos_expandidos      N²              0.0222           163469.9117         4                          12
+       BnB_trivial  nos_expandidos      N³              0.0409           161900.7475         4                          12
+       BnB_trivial  nos_expandidos N log N              0.0113           164376.3923         4                          12
+       BnB_trivial     nos_podados       N              0.0015          1128115.5346         4                          12
+       BnB_trivial     nos_podados      N²              0.0090          1123834.3099         4                          12
+       BnB_trivial     nos_podados      N³              0.0217          1116629.1124         4                          12
+       BnB_trivial     nos_podados N log N              0.0028          1127331.2005         4                          12
+       BnB_vizinho   tempo_total_s       N              0.0023               58.1887         4                          12
+       BnB_vizinho   tempo_total_s      N²              0.0112               57.9291         4                          12
+       BnB_vizinho   tempo_total_s      N³              0.0252               57.5175         4                          12
+       BnB_vizinho   tempo_total_s N log N              0.0041               58.1383         4                          12
+       BnB_vizinho   tempo_busca_s       N              0.0023               58.1887         4                          12
+       BnB_vizinho   tempo_busca_s      N²              0.0112               57.9290         4                          12
+       BnB_vizinho   tempo_busca_s      N³              0.0252               57.5175         4                          12
+       BnB_vizinho   tempo_busca_s N log N              0.0041               58.1383         4                          12
+       BnB_vizinho  nos_expandidos       N              0.0083           164506.6458         4                          12
+       BnB_vizinho  nos_expandidos      N²              0.0222           163345.1525         4                          12
+       BnB_vizinho  nos_expandidos      N³              0.0409           161776.2405         4                          12
+       BnB_vizinho  nos_expandidos N log N              0.0113           164251.6257         4                          12
+       BnB_vizinho     nos_podados       N              0.0015          1127617.9312         4                          12
+       BnB_vizinho     nos_podados      N²              0.0090          1123336.9571         4                          12
+       BnB_vizinho     nos_podados      N³              0.0217          1116132.9633         4                          12
+       BnB_vizinho     nos_podados N log N              0.0028          1126833.5603         4                          12
+           BnB_TAT   tempo_total_s       N              0.0021               58.1019         4                          12
+           BnB_TAT   tempo_total_s      N²              0.0106               57.8534         4                          12
+           BnB_TAT   tempo_total_s      N³              0.0242               57.4533         4                          12
+           BnB_TAT   tempo_total_s N log N              0.0037               58.0544         4                          12
+           BnB_TAT   tempo_busca_s       N              0.0021               58.1019         4                          12
+           BnB_TAT   tempo_busca_s      N²              0.0106               57.8534         4                          12
+           BnB_TAT   tempo_busca_s      N³              0.0242               57.4533         4                          12
+           BnB_TAT   tempo_busca_s N log N              0.0037               58.0544         4                          12
+           BnB_TAT  nos_expandidos       N              0.0082           164617.6756         4                          12
+           BnB_TAT  nos_expandidos      N²              0.0222           163456.1944         4                          12
+           BnB_TAT  nos_expandidos      N³              0.0409           161887.0434         4                          12
+           BnB_TAT  nos_expandidos N log N              0.0113           164362.6857         4                          12
+           BnB_TAT     nos_podados       N              0.0015          1128078.5189         4                          12
+           BnB_TAT     nos_podados      N²              0.0090          1123797.3178         4                          12
+           BnB_TAT     nos_podados      N³              0.0217          1116592.2146         4                          12
+           BnB_TAT     nos_podados N log N              0.0028          1127294.1834         4                          12
+           BnB_CHR   tempo_total_s       N              0.0023               58.3383         4                          12
+           BnB_CHR   tempo_total_s      N²              0.0111               58.0803         4                          12
+           BnB_CHR   tempo_total_s      N³              0.0250               57.6699         4                          12
+           BnB_CHR   tempo_total_s N log N              0.0040               58.2885         4                          12
+           BnB_CHR   tempo_busca_s       N              0.0023               58.3382         4                          12
+           BnB_CHR   tempo_busca_s      N²              0.0111               58.0801         4                          12
+           BnB_CHR   tempo_busca_s      N³              0.0250               57.6698         4                          12
+           BnB_CHR   tempo_busca_s N log N              0.0040               58.2884         4                          12
+           BnB_CHR  nos_expandidos       N              0.0082           164683.4729         4                          12
+           BnB_CHR  nos_expandidos      N²              0.0222           163522.4941         4                          12
+           BnB_CHR  nos_expandidos      N³              0.0408           161953.4364         4                          12
+           BnB_CHR  nos_expandidos N log N              0.0113           164428.6591         4                          12
+           BnB_CHR     nos_podados       N              0.0014          1128442.7102         4                          12
+           BnB_CHR     nos_podados      N²              0.0090          1124165.8848         4                          12
+           BnB_CHR     nos_podados      N³              0.0217          1116962.6317         4                          12
+           BnB_CHR     nos_podados N log N              0.0028          1127659.7895         4                          12
+       BnB_trivial pico_memoria_MB       N              0.9986                0.0020         4                           4
+       BnB_trivial pico_memoria_MB      N²              0.9961                0.0033         4                           4
+       BnB_trivial pico_memoria_MB      N³              0.9873                0.0059         4                           4
+       BnB_trivial pico_memoria_MB N log N              0.9986                0.0020         4                           4
+       BnB_vizinho pico_memoria_MB       N              0.9970                0.0027         4                           4
+       BnB_vizinho pico_memoria_MB      N²              0.9998                0.0006         4                           4
+       BnB_vizinho pico_memoria_MB      N³              0.9960                0.0031         4                           4
+       BnB_vizinho pico_memoria_MB N log N              0.9985                0.0019         4                           4
+           BnB_TAT pico_memoria_MB       N              0.9971                0.0026         4                           4
+           BnB_TAT pico_memoria_MB      N²              0.9998                0.0006         4                           4
+           BnB_TAT pico_memoria_MB      N³              0.9959                0.0032         4                           4
+           BnB_TAT pico_memoria_MB N log N              0.9986                0.0019         4                           4
+           BnB_CHR pico_memoria_MB       N              0.9993                0.0013         4                           4
+           BnB_CHR pico_memoria_MB      N²              0.9979                0.0023         4                           4
+           BnB_CHR pico_memoria_MB      N³              0.9903                0.0049         4                           4
+           BnB_CHR pico_memoria_MB N log N              0.9997                0.0009         4                           4
+  TAT [modo=tempo]   tempo_total_s       N              0.3791                0.0003        12                          24
+  TAT [modo=tempo]   tempo_total_s      N²              0.2994                0.0003        12                          24
+  TAT [modo=tempo]   tempo_total_s      N³              0.2246                0.0003        12                          24
+  TAT [modo=tempo]   tempo_total_s N log N              0.3632                0.0003        12                          24
+TAT [modo=memoria] pico_memoria_MB       N              0.9851                0.0004        12                          12
+TAT [modo=memoria] pico_memoria_MB      N²              0.9111                0.0009        12                          12
+TAT [modo=memoria] pico_memoria_MB      N³              0.8119                0.0014        12                          12
+TAT [modo=memoria] pico_memoria_MB N log N              0.9735                0.0005        12                          12
+  CHR [modo=tempo]   tempo_total_s       N              0.8121                0.0026        12                          24
+  CHR [modo=tempo]   tempo_total_s      N²              0.8208                0.0025        12                          24
+  CHR [modo=tempo]   tempo_total_s      N³              0.7905                0.0027        12                          24
+  CHR [modo=tempo]   tempo_total_s N log N              0.8189                0.0025        12                          24
+CHR [modo=memoria] pico_memoria_MB       N              0.9957                0.0006        12                          12
+CHR [modo=memoria] pico_memoria_MB      N²              0.9637                0.0017        12                          12
+CHR [modo=memoria] pico_memoria_MB      N³              0.8918                0.0029        12                          12
+CHR [modo=memoria] pico_memoria_MB N log N              0.9944                0.0007        12                          12
+Séries TAT/CHR identificadas como [modo=tempo] usam somente as instâncias do modo tempo; [modo=memoria] usam somente as do modo memória. n_pontos é o número de instâncias e n_repeticoes_mediana_total é a soma das repetições que compõem as medianas dessas instâncias.
+Nenhum modelo com R² alto deve ser interpretado como classe de complexidade algorítmica.
+
+[7] VERIFICAÇÃO TRIANGULAR
+
+Resumo
+-----------------------------------------------------------------
+ instancias_total  instancias_aplicaveis_verificacao_real  instancias_com_violacao_real  instancias_com_violacao_arredondada  proporcao_violacao_real
+               12                                       2                             0                                    7                   0.0000
+EXPLICIT: a não metricidade decorre da própria matriz de custos; violacoes_reais é NA e não se aplica.
+EUC_2D e GEO/ATT: a não metricidade observada pode decorrer apenas do arredondamento das distâncias.
+
+[8] SENSIBILIDADE — SPEARMAN
+
+Correlação por algoritmo e feature
+-----------------------------------------------------------------
+algoritmo                 feature  n  spearman_rho  p_valor         observacao
+      TAT           razao_aspecto  6       -0.8117   0.0728 empates na feature
+      TAT      prop_fecho_convexo  6       -0.7714   0.1104                NaN
+      TAT       entropia_espacial  6        0.7714   0.1112                NaN
+      TAT    densidade_clustering  6       -0.9429   0.0166                NaN
+      TAT            grau_max_mst  6        0.2928   0.7012 empates na feature
+      TAT cv_dist_vizinho_proximo  6       -0.5429   0.3052                NaN
+      TAT              dist_media  6        0.7143   0.1394                NaN
+      TAT             dist_desvio  6        0.7143   0.1394                NaN
+      CHR           razao_aspecto  6       -0.8986   0.0268 empates na feature
+      CHR      prop_fecho_convexo  6       -1.0000   0.0014                NaN
+      CHR       entropia_espacial  6        0.8857   0.0332                NaN
+      CHR    densidade_clustering  6       -0.8286   0.0608                NaN
+      CHR            grau_max_mst  6        0.2928   0.6872 empates na feature
+      CHR cv_dist_vizinho_proximo  6       -0.6000   0.2412                NaN
+      CHR              dist_media  6        0.6000   0.2432                NaN
+      CHR             dist_desvio  6        0.6000   0.2432                NaN
+Correlação é indício de associação, não causalidade; o n de instâncias limita a inferência.
+
+[9] PROFILING
+
+Frações por instância/subrotina
+-----------------------------------------------------------------
+instancia algoritmo estrategia           subrotina  tempo_subrotina_mediano_s  denominador_s  fracao_tempo_percentual  n_repeticoes
+    att48       BnB        CHR         busca_total                  1799.9710      1799.9710                 100.0000             1
+    att48       BnB        CHR busca_total_externa                  1800.0727      1799.9710                 100.0057             1
+    att48       BnB        CHR          calculo_lb                  1701.0695      1799.9710                  94.5054             1
+    att48       BnB        CHR         expansao_no                  1787.3748      1799.9710                  99.3002             1
+    att48       BnB        CHR      matriz_reducao                  1108.7916      1799.9710                  61.6005             1
+    att48       BnB        CHR           warmstart                     0.0323      1799.9710                   0.0018             1
+    att48       BnB        TAT         busca_total                  1799.9924      1799.9710                 100.0012             1
+    att48       BnB        TAT busca_total_externa                  1800.0883      1799.9710                 100.0065             1
+    att48       BnB        TAT          calculo_lb                  1697.2339      1799.9710                  94.2923             1
+    att48       BnB        TAT         expansao_no                  1785.4018      1799.9710                  99.1906             1
+    att48       BnB        TAT      matriz_reducao                  1085.7930      1799.9710                  60.3228             1
+    att48       BnB        TAT           warmstart                     0.0092      1799.9710                   0.0005             1
+    att48       BnB      fecho         busca_total                  1799.9963      1799.9710                 100.0014             1
+    att48       BnB      fecho busca_total_externa                  1800.1322      1799.9710                 100.0090             1
+    att48       BnB      fecho          calculo_lb                  1709.1339      1799.9710                  94.9534             1
+    att48       BnB      fecho         expansao_no                  1790.9996      1799.9710                  99.5016             1
+    att48       BnB      fecho      matriz_reducao                  1124.5604      1799.9710                  62.4766             1
+    att48       BnB      fecho           warmstart                     0.0087      1799.9710                   0.0005             1
+    att48       BnB    trivial         busca_total                  1799.9995      1799.9710                 100.0016             2
+    att48       BnB    trivial busca_total_externa                  1800.0224      1799.9710                 100.0029             2
+    att48       BnB    trivial          calculo_lb                  1704.1457      1799.9710                  94.6763             2
+    att48       BnB    trivial         expansao_no                  1788.3845      1799.9710                  99.3563             2
+    att48       BnB    trivial      matriz_reducao                  1083.5873      1799.9710                  60.2003             2
+    att48       BnB    trivial           warmstart                     0.0000      1799.9710                   0.0000             2
+    att48       BnB    vizinho         busca_total                  1799.9996      1799.9710                 100.0016             1
+    att48       BnB    vizinho busca_total_externa                  1800.0416      1799.9710                 100.0039             1
+    att48       BnB    vizinho          calculo_lb                  1700.6267      1799.9710                  94.4808             1
+    att48       BnB    vizinho         expansao_no                  1786.6551      1799.9710                  99.2602             1
+    att48       BnB    vizinho      matriz_reducao                  1093.1477      1799.9710                  60.7314             1
+    att48       BnB    vizinho           warmstart                     0.0012      1799.9710                   0.0001             1
+    att48       CHR         NA             atalhos                     0.0000         0.0159                   0.0277             1
+    att48       CHR         NA      emparelhamento                     0.0151         0.0159                  95.1002             1
+    att48       CHR         NA               euler                     0.0001         0.0159                   0.3299             1
+    att48       CHR         NA            grau_mst                     0.0000         0.0159                   0.0427             1
+    att48       CHR         NA            prim_mst                     0.0006         0.0159                   3.9220             1
+    att48       CHR         NA     validar_e_custo                     0.0000         0.0159                   0.1577             1
+    att48       TAT         NA             atalhos                     0.0000         0.0018                   1.2389             1
+    att48       TAT         NA            grau_mst                     0.0000         0.0018                   0.5519             1
+    att48       TAT         NA            prim_mst                     0.0017         0.0018                  95.5457             1
+    att48       TAT         NA     validar_e_custo                     0.0000         0.0018                   1.1657             1
+   bayg29       BnB        CHR         busca_total                  1799.9970      1799.9970                 100.0000             1
+   bayg29       BnB        CHR busca_total_externa                  1800.0110      1799.9970                 100.0008             1
+   bayg29       BnB        CHR          calculo_lb                  1699.4553      1799.9970                  94.4143             1
+   bayg29       BnB        CHR         expansao_no                  1791.9834      1799.9970                  99.5548             1
+   bayg29       BnB        CHR      matriz_reducao                  1151.2211      1799.9970                  63.9568             1
+   bayg29       BnB        CHR           warmstart                     0.0034      1799.9970                   0.0002             1
+   bayg29       BnB        TAT         busca_total                  1799.9997      1799.9970                 100.0002             1
+   bayg29       BnB        TAT busca_total_externa                  1800.0120      1799.9970                 100.0008             1
+   bayg29       BnB        TAT          calculo_lb                  1700.6427      1799.9970                  94.4803             1
+   bayg29       BnB        TAT         expansao_no                  1792.0394      1799.9970                  99.5579             1
+   bayg29       BnB        TAT      matriz_reducao                  1154.6195      1799.9970                  64.1456             1
+   bayg29       BnB        TAT           warmstart                     0.0007      1799.9970                   0.0000             1
+   bayg29       BnB    trivial         busca_total                  1800.0009      1799.9970                 100.0002             1
+   bayg29       BnB    trivial busca_total_externa                  1800.0127      1799.9970                 100.0009             1
+   bayg29       BnB    trivial          calculo_lb                  1696.0872      1799.9970                  94.2272             1
+   bayg29       BnB    trivial         expansao_no                  1791.8454      1799.9970                  99.5471             1
+   bayg29       BnB    trivial      matriz_reducao                  1158.3106      1799.9970                  64.3507             1
+   bayg29       BnB    trivial           warmstart                     0.0000      1799.9970                   0.0000             1
+   bayg29       BnB    vizinho         busca_total                  1799.9997      1799.9970                 100.0002             1
+   bayg29       BnB    vizinho busca_total_externa                  1800.0123      1799.9970                 100.0009             1
+   bayg29       BnB    vizinho          calculo_lb                  1700.2359      1799.9970                  94.4577             1
+   bayg29       BnB    vizinho         expansao_no                  1791.8784      1799.9970                  99.5490             1
+   bayg29       BnB    vizinho      matriz_reducao                  1153.1860      1799.9970                  64.0660             1
+   bayg29       BnB    vizinho           warmstart                     0.0002      1799.9970                   0.0000             1
+   bayg29       CHR         NA             atalhos                     0.0000         0.0036                   0.0869             1
+   bayg29       CHR         NA      emparelhamento                     0.0029         0.0036                  79.9249             1
+   bayg29       CHR         NA               euler                     0.0000         0.0036                   0.9221             1
+   bayg29       CHR         NA            grau_mst                     0.0000         0.0036                   0.1429             1
+   bayg29       CHR         NA            prim_mst                     0.0006         0.0036                  17.2108             1
+   bayg29       CHR         NA     validar_e_custo                     0.0000         0.0036                   0.4148             1
+   bayg29       TAT         NA             atalhos                     0.0000         0.0007                   2.3669             1
+   bayg29       TAT         NA            grau_mst                     0.0000         0.0007                   0.8594             1
+   bayg29       TAT         NA            prim_mst                     0.0006         0.0007                  91.4765             1
+   bayg29       TAT         NA     validar_e_custo                     0.0000         0.0007                   2.5218             1
+   bays29       BnB        CHR         busca_total                  1799.9945      1799.9945                 100.0000             1
+   bays29       BnB        CHR busca_total_externa                  1800.0102      1799.9945                 100.0009             1
+   bays29       BnB        CHR          calculo_lb                  1692.9403      1799.9945                  94.0525             1
+   bays29       BnB        CHR         expansao_no                  1788.5536      1799.9945                  99.3644             1
+   bays29       BnB        CHR      matriz_reducao                  1133.0443      1799.9945                  62.9471             1
+   bays29       BnB        CHR           warmstart                     0.0057      1799.9945                   0.0003             1
+   bays29       BnB        TAT         busca_total                  1799.9995      1799.9945                 100.0003             1
+   bays29       BnB        TAT busca_total_externa                  1800.0108      1799.9945                 100.0009             1
+   bays29       BnB        TAT          calculo_lb                  1690.4079      1799.9945                  93.9118             1
+   bays29       BnB        TAT         expansao_no                  1788.0674      1799.9945                  99.3374             1
+   bays29       BnB        TAT      matriz_reducao                  1120.9871      1799.9945                  62.2772             1
+   bays29       BnB        TAT           warmstart                     0.0007      1799.9945                   0.0000             1
+   bays29       BnB    trivial         busca_total                  1800.0014      1799.9945                 100.0004             1
+   bays29       BnB    trivial busca_total_externa                  1800.0146      1799.9945                 100.0011             1
+   bays29       BnB    trivial          calculo_lb                  1693.3357      1799.9945                  94.0745             1
+   bays29       BnB    trivial         expansao_no                  1788.0342      1799.9945                  99.3355             1
+   bays29       BnB    trivial      matriz_reducao                  1132.3193      1799.9945                  62.9068             1
+   bays29       BnB    trivial           warmstart                     0.0000      1799.9945                   0.0000             1
+   bays29       BnB    vizinho         busca_total                  1800.0002      1799.9945                 100.0003             1
+   bays29       BnB    vizinho busca_total_externa                  1800.0109      1799.9945                 100.0009             1
+   bays29       BnB    vizinho          calculo_lb                  1691.7691      1799.9945                  93.9875             1
+   bays29       BnB    vizinho         expansao_no                  1788.4333      1799.9945                  99.3577             1
+   bays29       BnB    vizinho      matriz_reducao                  1121.4013      1799.9945                  62.3003             1
+   bays29       BnB    vizinho           warmstart                     0.0002      1799.9945                   0.0000             1
+   bays29       CHR         NA             atalhos                     0.0000         0.0041                   0.0705             1
+   bays29       CHR         NA      emparelhamento                     0.0034         0.0041                  83.1538             1
+   bays29       CHR         NA               euler                     0.0000         0.0041                   0.7734             1
+   bays29       CHR         NA            grau_mst                     0.0000         0.0041                   0.1265             1
+   bays29       CHR         NA            prim_mst                     0.0006         0.0041                  14.5261             1
+   bays29       CHR         NA     validar_e_custo                     0.0000         0.0041                   0.3356             1
+   bays29       TAT         NA             atalhos                     0.0000         0.0006                   2.0595             1
+   bays29       TAT         NA            grau_mst                     0.0000         0.0006                   0.7742             1
+   bays29       TAT         NA            prim_mst                     0.0006         0.0006                  91.9170             1
+   bays29       TAT         NA     validar_e_custo                     0.0000         0.0006                   2.2917             1
+ berlin52       BnB        CHR         busca_total                  1799.9934      1799.9934                 100.0000             1
+ berlin52       BnB        CHR busca_total_externa                  1800.0785      1799.9934                 100.0047             1
+ berlin52       BnB        CHR          calculo_lb                  1714.7575      1799.9934                  95.2647             1
+ berlin52       BnB        CHR         expansao_no                  1792.1796      1799.9934                  99.5659             1
+ berlin52       BnB        CHR      matriz_reducao                  1143.9206      1799.9934                  63.5514             1
+ berlin52       BnB        CHR           warmstart                     0.0072      1799.9934                   0.0004             1
+ berlin52       BnB        TAT         busca_total                  1799.9995      1799.9934                 100.0003             1
+ berlin52       BnB        TAT busca_total_externa                  1800.0789      1799.9934                 100.0048             1
+ berlin52       BnB        TAT          calculo_lb                  1693.4532      1799.9934                  94.0811             1
+ berlin52       BnB        TAT         expansao_no                  1784.0811      1799.9934                  99.1160             1
+ berlin52       BnB        TAT      matriz_reducao                  1068.7593      1799.9934                  59.3757             1
+ berlin52       BnB        TAT           warmstart                     0.0006      1799.9934                   0.0000             1
+ berlin52       BnB      fecho         busca_total                  1799.9835      1799.9934                  99.9995             1
+ berlin52       BnB      fecho busca_total_externa                  1800.0798      1799.9934                 100.0048             1
+ berlin52       BnB      fecho          calculo_lb                  1715.1101      1799.9934                  95.2842             1
+ berlin52       BnB      fecho         expansao_no                  1792.5287      1799.9934                  99.5853             1
+ berlin52       BnB      fecho      matriz_reducao                  1144.6391      1799.9934                  63.5913             1
+ berlin52       BnB      fecho           warmstart                     0.0167      1799.9934                   0.0009             1
+ berlin52       BnB    trivial         busca_total                  1800.0001      1799.9934                 100.0004             1
+ berlin52       BnB    trivial busca_total_externa                  1800.0796      1799.9934                 100.0048             1
+ berlin52       BnB    trivial          calculo_lb                  1696.1273      1799.9934                  94.2296             1
+ berlin52       BnB    trivial         expansao_no                  1784.4124      1799.9934                  99.1344             1
+ berlin52       BnB    trivial      matriz_reducao                  1061.2822      1799.9934                  58.9603             1
+ berlin52       BnB    trivial           warmstart                     0.0000      1799.9934                   0.0000             1
+ berlin52       BnB    vizinho         busca_total                  1799.9996      1799.9934                 100.0003             1
+ berlin52       BnB    vizinho busca_total_externa                  1800.1005      1799.9934                 100.0059             1
+ berlin52       BnB    vizinho          calculo_lb                  1710.0803      1799.9934                  95.0048             1
+ berlin52       BnB    vizinho         expansao_no                  1790.9538      1799.9934                  99.4978             1
+ berlin52       BnB    vizinho      matriz_reducao                  1119.6704      1799.9934                  62.2041             1
+ berlin52       BnB    vizinho           warmstart                     0.0005      1799.9934                   0.0000             1
+ berlin52       CHR         NA             atalhos                     0.0000         0.0070                   0.0529             1
+ berlin52       CHR         NA      emparelhamento                     0.0063         0.0070                  90.6490             1
+ berlin52       CHR         NA               euler                     0.0000         0.0070                   0.6348             1
+ berlin52       CHR         NA            grau_mst                     0.0000         0.0070                   0.0801             1
+ berlin52       CHR         NA            prim_mst                     0.0005         0.0070                   7.7039             1
+ berlin52       CHR         NA     validar_e_custo                     0.0000         0.0070                   0.2559             1
+ berlin52       TAT         NA             atalhos                     0.0000         0.0005                   2.7224             1
+ berlin52       TAT         NA            grau_mst                     0.0000         0.0005                   1.0069             1
+ berlin52       TAT         NA            prim_mst                     0.0005         0.0005                  90.3599             1
+ berlin52       TAT         NA     validar_e_custo                     0.0000         0.0005                   2.7037             1
+  burma14       BnB        CHR         busca_total                     0.9207         0.9207                 100.0000             3
+  burma14       BnB        CHR busca_total_externa                     0.9341         0.9207                 101.4479             3
+  burma14       BnB        CHR          calculo_lb                     0.8623         0.9207                  93.6530             3
+  burma14       BnB        CHR         expansao_no                     0.9110         0.9207                  98.9494             3
+  burma14       BnB        CHR      matriz_reducao                     0.5965         0.9207                  64.7868             3
+  burma14       BnB        CHR           warmstart                     0.0015         0.9207                   0.1615             3
+  burma14       BnB        TAT         busca_total                     1.0090         0.9207                 109.5902             3
+  burma14       BnB        TAT busca_total_externa                     1.0222         0.9207                 111.0189             3
+  burma14       BnB        TAT          calculo_lb                     0.9431         0.9207                 102.4291             3
+  burma14       BnB        TAT         expansao_no                     0.9980         0.9207                 108.3922             3
+  burma14       BnB        TAT      matriz_reducao                     0.6524         0.9207                  70.8606             3
+  burma14       BnB        TAT           warmstart                     0.0003         0.9207                   0.0370             3
+  burma14       BnB      fecho         busca_total                     0.7711         0.9207                  83.7542             3
+  burma14       BnB      fecho busca_total_externa                     0.7850         0.9207                  85.2592             3
+  burma14       BnB      fecho          calculo_lb                     0.7215         0.9207                  78.3581             3
+  burma14       BnB      fecho         expansao_no                     0.7627         0.9207                  82.8392             3
+  burma14       BnB      fecho      matriz_reducao                     0.5004         0.9207                  54.3528             3
+  burma14       BnB      fecho           warmstart                     0.0004         0.9207                   0.0431             3
+  burma14       BnB    trivial         busca_total                     1.0782         0.9207                 117.1026             3
+  burma14       BnB    trivial busca_total_externa                     1.0926         0.9207                 118.6668             3
+  burma14       BnB    trivial          calculo_lb                     1.0067         0.9207                 109.3350             3
+  burma14       BnB    trivial         expansao_no                     1.0653         0.9207                 115.7019             3
+  burma14       BnB    trivial      matriz_reducao                     0.6952         0.9207                  75.5063             3
+  burma14       BnB    trivial           warmstart                     0.0000         0.9207                   0.0027             3
+  burma14       BnB    vizinho         busca_total                     1.0527         0.9207                 114.3379             3
+  burma14       BnB    vizinho busca_total_externa                     1.0664         0.9207                 115.8210             3
+  burma14       BnB    vizinho          calculo_lb                     0.9848         0.9207                 106.9569             3
+  burma14       BnB    vizinho         expansao_no                     1.0411         0.9207                 113.0777             3
+  burma14       BnB    vizinho      matriz_reducao                     0.6833         0.9207                  74.2138             3
+  burma14       BnB    vizinho           warmstart                     0.0001         0.9207                   0.0130             3
+  burma14       CHR         NA             atalhos                     0.0000         0.0018                   0.1713             3
+  burma14       CHR         NA      emparelhamento                     0.0013         0.0018                  74.0397             3
+  burma14       CHR         NA               euler                     0.0000         0.0018                   1.9676             3
+  burma14       CHR         NA            grau_mst                     0.0000         0.0018                   0.3924             3
+  burma14       CHR         NA            prim_mst                     0.0004         0.0018                  20.3504             3
+  burma14       CHR         NA     validar_e_custo                     0.0000         0.0018                   0.9341             3
+  burma14       TAT         NA             atalhos                     0.0000         0.0004                   2.6487             3
+  burma14       TAT         NA            grau_mst                     0.0000         0.0004                   1.4243             3
+  burma14       TAT         NA            prim_mst                     0.0004         0.0004                  88.6307             3
+  burma14       TAT         NA     validar_e_custo                     0.0000         0.0004                   2.7986             3
+    fri26       BnB        CHR         busca_total                  1799.9962      1799.9962                 100.0000             1
+    fri26       BnB        CHR busca_total_externa                  1800.0150      1799.9962                 100.0010             1
+    fri26       BnB        CHR          calculo_lb                  1707.2721      1799.9962                  94.8486             1
+    fri26       BnB        CHR         expansao_no                  1791.0285      1799.9962                  99.5018             1
+    fri26       BnB        CHR      matriz_reducao                  1189.0928      1799.9962                  66.0608             1
+    fri26       BnB        CHR           warmstart                     0.0043      1799.9962                   0.0002             1
+    fri26       BnB        TAT         busca_total                  1799.9997      1799.9962                 100.0002             1
+    fri26       BnB        TAT busca_total_externa                  1800.0125      1799.9962                 100.0009             1
+    fri26       BnB        TAT          calculo_lb                  1709.2728      1799.9962                  94.9598             1
+    fri26       BnB        TAT         expansao_no                  1791.2417      1799.9962                  99.5136             1
+    fri26       BnB        TAT      matriz_reducao                  1191.2569      1799.9962                  66.1811             1
+    fri26       BnB        TAT           warmstart                     0.0006      1799.9962                   0.0000             1
+    fri26       BnB    trivial         busca_total                  1800.0002      1799.9962                 100.0002             1
+    fri26       BnB    trivial busca_total_externa                  1800.0123      1799.9962                 100.0009             1
+    fri26       BnB    trivial          calculo_lb                  1708.2932      1799.9962                  94.9054             1
+    fri26       BnB    trivial         expansao_no                  1791.0677      1799.9962                  99.5040             1
+    fri26       BnB    trivial      matriz_reducao                  1194.0270      1799.9962                  66.3350             1
+    fri26       BnB    trivial           warmstart                     0.0000      1799.9962                   0.0000             1
+    fri26       BnB    vizinho         busca_total                  1800.0002      1799.9962                 100.0002             1
+    fri26       BnB    vizinho busca_total_externa                  1800.0127      1799.9962                 100.0009             1
+    fri26       BnB    vizinho          calculo_lb                  1710.8991      1799.9962                  95.0502             1
+    fri26       BnB    vizinho         expansao_no                  1791.1476      1799.9962                  99.5084             1
+    fri26       BnB    vizinho      matriz_reducao                  1193.6713      1799.9962                  66.3152             1
+    fri26       BnB    vizinho           warmstart                     0.0002      1799.9962                   0.0000             1
+    fri26       CHR         NA             atalhos                     0.0000         0.0080                   0.0474             1
+    fri26       CHR         NA      emparelhamento                     0.0073         0.0080                  91.4585             1
+    fri26       CHR         NA               euler                     0.0001         0.0080                   0.7151             1
+    fri26       CHR         NA            grau_mst                     0.0000         0.0080                   0.0736             1
+    fri26       CHR         NA            prim_mst                     0.0005         0.0080                   6.7119             1
+    fri26       CHR         NA     validar_e_custo                     0.0000         0.0080                   0.2808             1
+    fri26       TAT         NA             atalhos                     0.0000         0.0006                   2.6036             1
+    fri26       TAT         NA            grau_mst                     0.0000         0.0006                   1.0779             1
+    fri26       TAT         NA            prim_mst                     0.0005         0.0006                  90.7960             1
+    fri26       TAT         NA     validar_e_custo                     0.0000         0.0006                   2.2886             1
+     gr17       BnB        CHR         busca_total                   147.4459       147.4459                 100.0000             3
+     gr17       BnB        CHR busca_total_externa                   147.4598       147.4459                 100.0094             3
+     gr17       BnB        CHR          calculo_lb                   138.9104       147.4459                  94.2111             3
+     gr17       BnB        CHR         expansao_no                   146.2962       147.4459                  99.2202             3
+     gr17       BnB        CHR      matriz_reducao                    96.0869       147.4459                  65.1675             3
+     gr17       BnB        CHR           warmstart                     0.0018       147.4459                   0.0012             3
+     gr17       BnB        TAT         busca_total                   147.1617       147.4459                  99.8073             3
+     gr17       BnB        TAT busca_total_externa                   147.1739       147.4459                  99.8155             3
+     gr17       BnB        TAT          calculo_lb                   138.4041       147.4459                  93.8677             3
+     gr17       BnB        TAT         expansao_no                   145.9887       147.4459                  99.0117             3
+     gr17       BnB        TAT      matriz_reducao                    95.9523       147.4459                  65.0763             3
+     gr17       BnB        TAT           warmstart                     0.0004       147.4459                   0.0002             3
+     gr17       BnB    trivial         busca_total                   147.1804       147.4459                  99.8199             3
+     gr17       BnB    trivial busca_total_externa                   147.1923       147.4459                  99.8280             3
+     gr17       BnB    trivial          calculo_lb                   138.4763       147.4459                  93.9167             3
+     gr17       BnB    trivial         expansao_no                   146.0267       147.4459                  99.0375             3
+     gr17       BnB    trivial      matriz_reducao                    96.0981       147.4459                  65.1751             3
+     gr17       BnB    trivial           warmstart                     0.0000       147.4459                   0.0000             3
+     gr17       BnB    vizinho         busca_total                   147.1457       147.4459                  99.7964             3
+     gr17       BnB    vizinho busca_total_externa                   147.1577       147.4459                  99.8045             3
+     gr17       BnB    vizinho          calculo_lb                   138.5103       147.4459                  93.9398             3
+     gr17       BnB    vizinho         expansao_no                   145.9779       147.4459                  99.0044             3
+     gr17       BnB    vizinho      matriz_reducao                    95.9553       147.4459                  65.0783             3
+     gr17       BnB    vizinho           warmstart                     0.0001       147.4459                   0.0001             3
+     gr17       CHR         NA             atalhos                     0.0000         0.0018                   0.1411             3
+     gr17       CHR         NA      emparelhamento                     0.0014         0.0018                  75.5535             3
+     gr17       CHR         NA               euler                     0.0000         0.0018                   1.6225             3
+     gr17       CHR         NA            grau_mst                     0.0000         0.0018                   0.2225             3
+     gr17       CHR         NA            prim_mst                     0.0004         0.0018                  20.0619             3
+     gr17       CHR         NA     validar_e_custo                     0.0000         0.0018                   0.6186             3
+     gr17       TAT         NA             atalhos                     0.0000         0.0004                   2.6071             3
+     gr17       TAT         NA            grau_mst                     0.0000         0.0004                   1.0842             3
+     gr17       TAT         NA            prim_mst                     0.0003         0.0004                  89.4941             3
+     gr17       TAT         NA     validar_e_custo                     0.0000         0.0004                   2.3748             3
+     gr21       BnB        CHR         busca_total                    12.6862        12.6862                 100.0000             3
+     gr21       BnB        CHR busca_total_externa                    12.7004        12.6862                 100.1120             3
+     gr21       BnB        CHR          calculo_lb                    12.0164        12.6862                  94.7205             3
+     gr21       BnB        CHR         expansao_no                    12.6153        12.6862                  99.4416             3
+     gr21       BnB        CHR      matriz_reducao                     8.4374        12.6862                  66.5089             3
+     gr21       BnB        CHR           warmstart                     0.0021        12.6862                   0.0164             3
+     gr21       BnB        TAT         busca_total                    12.8111        12.6862                 100.9848             3
+     gr21       BnB        TAT busca_total_externa                    12.8235        12.6862                 101.0823             3
+     gr21       BnB        TAT          calculo_lb                    12.1246        12.6862                  95.5735             3
+     gr21       BnB        TAT         expansao_no                    12.7383        12.6862                 100.4105             3
+     gr21       BnB        TAT      matriz_reducao                     8.5106        12.6862                  67.0856             3
+     gr21       BnB        TAT           warmstart                     0.0004        12.6862                   0.0031             3
+     gr21       BnB    trivial         busca_total                    12.8024        12.6862                 100.9163             3
+     gr21       BnB    trivial busca_total_externa                    12.8144        12.6862                 101.0105             3
+     gr21       BnB    trivial          calculo_lb                    12.1264        12.6862                  95.5876             3
+     gr21       BnB    trivial         expansao_no                    12.7302        12.6862                 100.3470             3
+     gr21       BnB    trivial      matriz_reducao                     8.5349        12.6862                  67.2770             3
+     gr21       BnB    trivial           warmstart                     0.0000        12.6862                   0.0002             3
+     gr21       BnB    vizinho         busca_total                    12.7728        12.6862                 100.6827             3
+     gr21       BnB    vizinho busca_total_externa                    12.7848        12.6862                 100.7776             3
+     gr21       BnB    vizinho          calculo_lb                    12.0827        12.6862                  95.2430             3
+     gr21       BnB    vizinho         expansao_no                    12.7011        12.6862                 100.1173             3
+     gr21       BnB    vizinho      matriz_reducao                     8.4861        12.6862                  66.8925             3
+     gr21       BnB    vizinho           warmstart                     0.0001        12.6862                   0.0010             3
+     gr21       CHR         NA             atalhos                     0.0000         0.0021                   0.1309             3
+     gr21       CHR         NA      emparelhamento                     0.0017         0.0021                  77.4838             3
+     gr21       CHR         NA               euler                     0.0000         0.0021                   1.5148             3
+     gr21       CHR         NA            grau_mst                     0.0000         0.0021                   0.2197             3
+     gr21       CHR         NA            prim_mst                     0.0004         0.0021                  18.2477             3
+     gr21       CHR         NA     validar_e_custo                     0.0000         0.0021                   0.5470             3
+     gr21       TAT         NA             atalhos                     0.0000         0.0004                   2.3471             3
+     gr21       TAT         NA            grau_mst                     0.0000         0.0004                   1.0381             3
+     gr21       TAT         NA            prim_mst                     0.0004         0.0004                  90.3633             3
+     gr21       TAT         NA     validar_e_custo                     0.0000         0.0004                   2.2568             3
+     gr24       BnB        CHR         busca_total                  1799.9977      1799.9977                 100.0000             3
+     gr24       BnB        CHR busca_total_externa                  1800.0126      1799.9977                 100.0008             3
+     gr24       BnB        CHR          calculo_lb                  1705.3125      1799.9977                  94.7397             3
+     gr24       BnB        CHR         expansao_no                  1789.9319      1799.9977                  99.4408             3
+     gr24       BnB        CHR      matriz_reducao                  1188.1060      1799.9977                  66.0060             3
+     gr24       BnB        CHR           warmstart                     0.0026      1799.9977                   0.0001             3
+     gr24       BnB        TAT         busca_total                  1799.9998      1799.9977                 100.0001             3
+     gr24       BnB        TAT busca_total_externa                  1800.0125      1799.9977                 100.0008             3
+     gr24       BnB        TAT          calculo_lb                  1706.2995      1799.9977                  94.7945             3
+     gr24       BnB        TAT         expansao_no                  1789.9102      1799.9977                  99.4396             3
+     gr24       BnB        TAT      matriz_reducao                  1189.1599      1799.9977                  66.0645             3
+     gr24       BnB        TAT           warmstart                     0.0005      1799.9977                   0.0000             3
+     gr24       BnB    trivial         busca_total                  1800.0000      1799.9977                 100.0001             3
+     gr24       BnB    trivial busca_total_externa                  1800.0123      1799.9977                 100.0008             3
+     gr24       BnB    trivial          calculo_lb                  1706.0302      1799.9977                  94.7796             3
+     gr24       BnB    trivial         expansao_no                  1789.9288      1799.9977                  99.4406             3
+     gr24       BnB    trivial      matriz_reducao                  1189.7999      1799.9977                  66.1001             3
+     gr24       BnB    trivial           warmstart                     0.0000      1799.9977                   0.0000             3
+     gr24       BnB    vizinho         busca_total                  1799.9999      1799.9977                 100.0001             3
+     gr24       BnB    vizinho busca_total_externa                  1800.0122      1799.9977                 100.0008             3
+     gr24       BnB    vizinho          calculo_lb                  1705.4983      1799.9977                  94.7500             3
+     gr24       BnB    vizinho         expansao_no                  1789.9269      1799.9977                  99.4405             3
+     gr24       BnB    vizinho      matriz_reducao                  1190.5436      1799.9977                  66.1414             3
+     gr24       BnB    vizinho           warmstart                     0.0002      1799.9977                   0.0000             3
+     gr24       CHR         NA             atalhos                     0.0000         0.0026                   0.1175             3
+     gr24       CHR         NA      emparelhamento                     0.0020         0.0026                  79.3568             3
+     gr24       CHR         NA               euler                     0.0000         0.0026                   1.3671             3
+     gr24       CHR         NA            grau_mst                     0.0000         0.0026                   0.1959             3
+     gr24       CHR         NA            prim_mst                     0.0004         0.0026                  17.1413             3
+     gr24       CHR         NA     validar_e_custo                     0.0000         0.0026                   0.4661             3
+     gr24       TAT         NA             atalhos                     0.0000         0.0005                   2.4454             3
+     gr24       TAT         NA            grau_mst                     0.0000         0.0005                   1.2530             3
+     gr24       TAT         NA            prim_mst                     0.0004         0.0005                  90.6225             3
+     gr24       TAT         NA     validar_e_custo                     0.0000         0.0005                   2.3040             3
+     st70       BnB        CHR         busca_total                  1799.9776      1799.9776                 100.0000             1
+     st70       BnB        CHR busca_total_externa                  1800.2416      1799.9776                 100.0147             1
+     st70       BnB        CHR          calculo_lb                  1720.2503      1799.9776                  95.5707             1
+     st70       BnB        CHR         expansao_no                  1791.7020      1799.9776                  99.5402             1
+     st70       BnB        CHR      matriz_reducao                  1102.8036      1799.9776                  61.2676             1
+     st70       BnB        CHR           warmstart                     0.0234      1799.9776                   0.0013             1
+     st70       BnB        TAT         busca_total                  1799.9994      1799.9776                 100.0012             1
+     st70       BnB        TAT busca_total_externa                  1800.2388      1799.9776                 100.0145             1
+     st70       BnB        TAT          calculo_lb                  1699.7897      1799.9776                  94.4339             1
+     st70       BnB        TAT         expansao_no                  1784.3646      1799.9776                  99.1326             1
+     st70       BnB        TAT      matriz_reducao                  1058.2040      1799.9776                  58.7898             1
+     st70       BnB        TAT           warmstart                     0.0010      1799.9776                   0.0001             1
+     st70       BnB      fecho         busca_total                  1799.9589      1799.9776                  99.9990             1
+     st70       BnB      fecho busca_total_externa                  1800.2380      1799.9776                 100.0145             1
+     st70       BnB      fecho          calculo_lb                  1729.6013      1799.9776                  96.0902             1
+     st70       BnB      fecho         expansao_no                  1794.9991      1799.9776                  99.7234             1
+     st70       BnB      fecho      matriz_reducao                  1167.0000      1799.9776                  64.8341             1
+     st70       BnB      fecho           warmstart                     0.0420      1799.9776                   0.0023             1
+     st70       BnB    trivial         busca_total                  1800.0003      1799.9776                 100.0013             1
+     st70       BnB    trivial busca_total_externa                  1800.2392      1799.9776                 100.0145             1
+     st70       BnB    trivial          calculo_lb                  1699.2276      1799.9776                  94.4027             1
+     st70       BnB    trivial         expansao_no                  1784.0458      1799.9776                  99.1149             1
+     st70       BnB    trivial      matriz_reducao                  1058.8424      1799.9776                  58.8253             1
+     st70       BnB    trivial           warmstart                     0.0000      1799.9776                   0.0000             1
+     st70       BnB    vizinho         busca_total                  1799.9993      1799.9776                 100.0012             1
+     st70       BnB    vizinho busca_total_externa                  1800.2450      1799.9776                 100.0149             1
+     st70       BnB    vizinho          calculo_lb                  1705.1896      1799.9776                  94.7339             1
+     st70       BnB    vizinho         expansao_no                  1786.6379      1799.9776                  99.2589             1
+     st70       BnB    vizinho      matriz_reducao                  1066.2503      1799.9776                  59.2369             1
+     st70       BnB    vizinho           warmstart                     0.0010      1799.9776                   0.0001             1
+     st70       CHR         NA             atalhos                     0.0000         0.0208                   0.0226             1
+     st70       CHR         NA      emparelhamento                     0.0197         0.0208                  94.7754             1
+     st70       CHR         NA               euler                     0.0001         0.0208                   0.2821             1
+     st70       CHR         NA            grau_mst                     0.0000         0.0208                   0.0317             1
+     st70       CHR         NA            prim_mst                     0.0009         0.0208                   4.3620             1
+     st70       CHR         NA     validar_e_custo                     0.0000         0.0208                   0.1663             1
+     st70       TAT         NA             atalhos                     0.0000         0.0010                   2.3417             1
+     st70       TAT         NA            grau_mst                     0.0000         0.0010                   0.7141             1
+     st70       TAT         NA            prim_mst                     0.0009         0.0010                  91.8303             1
+     st70       TAT         NA     validar_e_custo                     0.0000         0.0010                   2.4467             1
+ulysses16       BnB        CHR         busca_total                    76.4437        76.4437                 100.0000             3
+ulysses16       BnB        CHR busca_total_externa                    76.4573        76.4437                 100.0179             3
+ulysses16       BnB        CHR          calculo_lb                    71.6948        76.4437                  93.7877             3
+ulysses16       BnB        CHR         expansao_no                    75.7304        76.4437                  99.0670             3
+ulysses16       BnB        CHR      matriz_reducao                    49.4702        76.4437                  64.7146             3
+ulysses16       BnB        CHR           warmstart                     0.0016        76.4437                   0.0020             3
+ulysses16       BnB        TAT         busca_total                    75.2060        76.4437                  98.3809             3
+ulysses16       BnB        TAT busca_total_externa                    75.2186        76.4437                  98.3974             3
+ulysses16       BnB        TAT          calculo_lb                    70.6115        76.4437                  92.3706             3
+ulysses16       BnB        TAT         expansao_no                    74.5214        76.4437                  97.4854             3
+ulysses16       BnB        TAT      matriz_reducao                    48.7503        76.4437                  63.7729             3
+ulysses16       BnB        TAT           warmstart                     0.0003        76.4437                   0.0005             3
+ulysses16       BnB      fecho         busca_total                    76.4932        76.4437                 100.0648             3
+ulysses16       BnB      fecho busca_total_externa                    76.5057        76.4437                 100.0812             3
+ulysses16       BnB      fecho          calculo_lb                    71.8408        76.4437                  93.9788             3
+ulysses16       BnB      fecho         expansao_no                    75.7942        76.4437                  99.1505             3
+ulysses16       BnB      fecho      matriz_reducao                    49.5765        76.4437                  64.8536             3
+ulysses16       BnB      fecho           warmstart                     0.0005        76.4437                   0.0006             3
+ulysses16       BnB    trivial         busca_total                    77.5902        76.4437                 101.4999             3
+ulysses16       BnB    trivial busca_total_externa                    77.6024        76.4437                 101.5158             3
+ulysses16       BnB    trivial          calculo_lb                    72.8418        76.4437                  95.2883             3
+ulysses16       BnB    trivial         expansao_no                    76.8757        76.4437                 100.5652             3
+ulysses16       BnB    trivial      matriz_reducao                    50.2557        76.4437                  65.7421             3
+ulysses16       BnB    trivial           warmstart                     0.0000        76.4437                   0.0000             3
+ulysses16       BnB    vizinho         busca_total                    76.6573        76.4437                 100.2795             3
+ulysses16       BnB    vizinho busca_total_externa                    76.6694        76.4437                 100.2954             3
+ulysses16       BnB    vizinho          calculo_lb                    71.9088        76.4437                  94.0678             3
+ulysses16       BnB    vizinho         expansao_no                    75.9542        76.4437                  99.3597             3
+ulysses16       BnB    vizinho      matriz_reducao                    49.5022        76.4437                  64.7564             3
+ulysses16       BnB    vizinho           warmstart                     0.0001        76.4437                   0.0001             3
+ulysses16       CHR         NA             atalhos                     0.0000         0.0016                   0.1553             3
+ulysses16       CHR         NA      emparelhamento                     0.0012         0.0016                  74.5948             3
+ulysses16       CHR         NA               euler                     0.0000         0.0016                   1.7947             3
+ulysses16       CHR         NA            grau_mst                     0.0000         0.0016                   0.2794             3
+ulysses16       CHR         NA            prim_mst                     0.0003         0.0016                  20.0211             3
+ulysses16       CHR         NA     validar_e_custo                     0.0000         0.0016                   0.7142             3
+ulysses16       TAT         NA             atalhos                     0.0000         0.0004                   2.4839             3
+ulysses16       TAT         NA            grau_mst                     0.0000         0.0004                   1.1177             3
+ulysses16       TAT         NA            prim_mst                     0.0004         0.0004                  88.4749             3
+ulysses16       TAT         NA     validar_e_custo                     0.0000         0.0004                   2.3100             3
+ulysses22       BnB        CHR         busca_total                  1799.9978      1799.9978                 100.0000             3
+ulysses22       BnB        CHR busca_total_externa                  1800.0129      1799.9978                 100.0008             3
+ulysses22       BnB        CHR          calculo_lb                  1698.8606      1799.9978                  94.3813             3
+ulysses22       BnB        CHR         expansao_no                  1787.9613      1799.9978                  99.3313             3
+ulysses22       BnB        CHR      matriz_reducao                  1171.9268      1799.9978                  65.1071             3
+ulysses22       BnB        CHR           warmstart                     0.0024      1799.9978                   0.0001             3
+ulysses22       BnB        TAT         busca_total                  1799.9997      1799.9978                 100.0001             3
+ulysses22       BnB        TAT busca_total_externa                  1800.0122      1799.9978                 100.0008             3
+ulysses22       BnB        TAT          calculo_lb                  1700.3307      1799.9978                  94.4629             3
+ulysses22       BnB        TAT         expansao_no                  1788.0157      1799.9978                  99.3343             3
+ulysses22       BnB        TAT      matriz_reducao                  1174.2263      1799.9978                  65.2349             3
+ulysses22       BnB        TAT           warmstart                     0.0004      1799.9978                   0.0000             3
+ulysses22       BnB      fecho         busca_total                  1799.9987      1799.9978                 100.0000             3
+ulysses22       BnB      fecho busca_total_externa                  1800.0120      1799.9978                 100.0008             3
+ulysses22       BnB      fecho          calculo_lb                  1702.0119      1799.9978                  94.5563             3
+ulysses22       BnB      fecho         expansao_no                  1788.3280      1799.9978                  99.3517             3
+ulysses22       BnB      fecho      matriz_reducao                  1175.3682      1799.9978                  65.2983             3
+ulysses22       BnB      fecho           warmstart                     0.0014      1799.9978                   0.0001             3
+ulysses22       BnB    trivial         busca_total                  1800.0001      1799.9978                 100.0001             3
+ulysses22       BnB    trivial busca_total_externa                  1800.0122      1799.9978                 100.0008             3
+ulysses22       BnB    trivial          calculo_lb                  1699.9875      1799.9978                  94.4439             3
+ulysses22       BnB    trivial         expansao_no                  1788.0734      1799.9978                  99.3375             3
+ulysses22       BnB    trivial      matriz_reducao                  1171.9163      1799.9978                  65.1065             3
+ulysses22       BnB    trivial           warmstart                     0.0000      1799.9978                   0.0000             3
+ulysses22       BnB    vizinho         busca_total                  1800.0001      1799.9978                 100.0001             3
+ulysses22       BnB    vizinho busca_total_externa                  1800.0125      1799.9978                 100.0008             3
+ulysses22       BnB    vizinho          calculo_lb                  1699.6725      1799.9978                  94.4264             3
+ulysses22       BnB    vizinho         expansao_no                  1788.1400      1799.9978                  99.3412             3
+ulysses22       BnB    vizinho      matriz_reducao                  1171.9677      1799.9978                  65.1094             3
+ulysses22       BnB    vizinho           warmstart                     0.0001      1799.9978                   0.0000             3
+ulysses22       CHR         NA             atalhos                     0.0000         0.0022                   0.1251             3
+ulysses22       CHR         NA      emparelhamento                     0.0018         0.0022                  78.8801             3
+ulysses22       CHR         NA               euler                     0.0000         0.0022                   1.4747             3
+ulysses22       CHR         NA            grau_mst                     0.0000         0.0022                   0.2056             3
+ulysses22       CHR         NA            prim_mst                     0.0004         0.0022                  17.4197             3
+ulysses22       CHR         NA     validar_e_custo                     0.0000         0.0022                   0.5005             3
+ulysses22       TAT         NA             atalhos                     0.0000         0.0004                   2.4882             3
+ulysses22       TAT         NA            grau_mst                     0.0000         0.0004                   1.0984             3
+ulysses22       TAT         NA            prim_mst                     0.0004         0.0004                  90.1592             3
+ulysses22       TAT         NA     validar_e_custo                     0.0000         0.0004                   2.4210             3
+CHR/TAT: subrotinas não aninhadas e somáveis. BnB: subrotinas aninhadas; não somar. busca_total_externa inclui overhead do processo.
+
+[10] LIMITAÇÕES CONHECIDAS
+- Amostra limitada a 12 instâncias; instâncias com mesmo N permanecem pontos distintos.
+- Repetições medem variabilidade experimental, mas não aumentam o número de instâncias independentes.
+- Correlações Spearman são exploratórias e não implicam causalidade.
+- Ajustes empíricos não demonstram complexidade assintótica.
+- GEO/ATT usam coordenadas não euclidianas para as features; a interpretação geométrica deve ser cautelosa.
+
+==============================================================================
+FIM DO RELATÓRIO GERAL
+==============================================================================
+
+=================================================================
+ANÁLISES FINALIZADAS
+Resultados salvos em: C:\Users\josep\OneDrive\Documentos\Faculdade\Trabalhos\Algoritmos 2\TP2\resultados\resultados_regressao
+=================================================================

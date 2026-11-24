@@ -1,0 +1,13 @@
+﻿subrotina,memoria_pico_MB,chamadas
+atalhos,,
+busca_total,,1.0
+busca_total_externa,,1.0
+calculo_lb,,3272556.0
+emparelhamento,,
+euler,,
+expansao_no,,405694.0
+grau_mst,,
+matriz_reducao,,3272556.0
+prim_mst,,
+validar_e_custo,,
+warmstart,,1.0

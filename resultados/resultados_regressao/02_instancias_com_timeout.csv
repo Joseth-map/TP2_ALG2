@@ -1,0 +1,11 @@
+﻿algoritmo,estrategia_warmstart,modo,instancias_com_timeout
+BnB,CHR,memoria,8
+BnB,CHR,tempo,8
+BnB,TAT,memoria,8
+BnB,TAT,tempo,8
+BnB,fecho,memoria,4
+BnB,fecho,tempo,4
+BnB,trivial,memoria,8
+BnB,trivial,tempo,8
+BnB,vizinho,memoria,8
+BnB,vizinho,tempo,8

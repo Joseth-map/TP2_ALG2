@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.jj": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/c:\\Users\\josep\\OneDrive\\Documentos\\Faculdade\\Trabalhos\\Algoritmos 2\\TP2\\relatorio\\artigo.aux": true,
+        "**/c:\\Users\\josep\\OneDrive\\Documentos\\Faculdade\\Trabalhos\\Algoritmos 2\\TP2\\relatorio\\artigo.log": true,
+        "**/c:\\Users\\josep\\OneDrive\\Documentos\\Faculdade\\Trabalhos\\Algoritmos 2\\TP2\\relatorio\\artigo.gz": true,
+        "**/c:\\Users\\josep\\OneDrive\\Documentos\\Faculdade\\Trabalhos\\Algoritmos 2\\TP2\\relatorio\\artigo.out": true
+    }
+}

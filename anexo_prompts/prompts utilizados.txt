@@ -1,0 +1,215 @@
+1º Prompt:
+
+Você é um assistente de engenharia de algoritmos. Preciso de implementações em Python de dois algoritmos aproximativos para o Problema do Caixeiro Viajante (TSP) geométrico, como parte de um trabalho acadêmico. Eu preciso entender cada trecho, então priorize clareza, comentários curtos nas decisões não óbvias e a ausência de otimizações que escondam a lógica.
+
+-- Contexto
+
+As instâncias vêm da TSPLIB, com N entre 14 e 70 vértices. Detecte as instânicas que estão desrespeitando a desigualdade triangular, porque as garantias de aproximação dos algoritmos só valem em métricas.
+
+-- Algoritmo 1: Twice-around-the-tree (TAT)
+
+Implemente twice_around_the_tree(D) com as etapas:
+
+. MST com Prim em O(N²)
+. Caminhada em pré-ordem
+. Retorne (tour, custo) para que eu possa validá-lo
+
+-- Algoritmo 2: Christofides
+
+Implemente christofides(D) com as etapas:
+
+. MST com Prim (mesma função do TAT, reaproveitada).
+. Vértices de grau ímpar na MST.
+. Emparelhamento perfeito de custo mínimo nos vértices ímpares, usando networkx.min_weight_matching
+. Multigrafo euleriano
+. Circuito de Euler, implementado à mão, com pilha explícita.
+. Retorne (tour, custo) para que eu possa validá-lo
+
+Em cada um, comente sobe a garantia teórica.
+
+-- Instrumentação
+
+Cada função deve registrar, em um dicionário "tempos" passado por parâmetro opcional, o tempo de cada subrotina, e o pico de memória (opcional, controlado por flag). Subrotinas com nomes fixos: matriz_distancias, prim_mst, grau_mst, emparelhamento, euler, atalhos. Use esses nomes exatamente, porque são chaves para um CSV.
+
+-- Restrições
+Não use bibliotecas de TSP prontas.
+Código em um único arquivo aproximativos.py, com função main de demonstração que roda burma14 e imprime custo, gap e tempos.
+
+-- Validação esperada
+
+No main, inclua:
+. Para burma14, o ótimo publicado é 3323, e o gap deve ser calculado.
+. Teste de sanidade: para cada algoritmo, o custo deve ser ≥ ótimo e ≤ a garantia teórica (2× para TAT, 1,5× para Christofides). Use assert nesses casos.
+
+-- Formato da resposta
+. O arquivo aproximativos.py completo, em um único bloco de código
+. Uma lista das decisões de implementação que não são óbvias
+
+Não invente valores de ótimo além do fornecido. Se algo no enunciado da TSPLIB for ambíguo, diga explicitamente em vez de escolher em silêncio.
+
+2º Prompt:
+
+Você é um assistente de engenharia de algoritmos. Preciso de implementações em Python de dois algoritmos aproximativos para o Problema do Caixeiro Viajante (TSP) geométrico, como parte de um trabalho acadêmico. Eu preciso entender cada trecho, então priorize clareza, comentários curtos nas decisões não óbvias e a ausência de otimizações que escondam a lógica.
+
+-- COntexto
+
+As instâncias vêm da TSPLIB, com N entre 14 e 70. Já existe um arquivo aproximativos.py com as funções ler_tsplib, construir_matriz, verificar_triangular, validar_e_custo, prim_mst, twice_around_the_tree e christofides. Reaproveite essas funções por importação e não as reescreva. Se precisar de alguma alteração nelas, diga explicitamente qual e por quê.
+
+A matriz de custos D (inteira, N×N) é a mesma usada por todos os algoritmos. Toda comparação de custo deve usar essa matriz, não o ótimo publicado da TSPLIB.
+
+-- Decisões de projeto já fixadas (de forma alguma altere sem uma validação)
+. Limite inferior por matriz reduzida (veja sobre o método de Little). Em cada nó, o LB é o custo acumulado do caminho parcial mais o total subtraído na redução da submatriz de cidades não visitadas.
+. Busca em profundidade (DFS) com pilha explícita, sem recursão.
+. Filhos visitados em ordem crescente de LB. Na pilha, empilhe os filhos em ordem decrescente de LB, para que o de menor LB seja desempilhado primeiro.
+
+-- Cinco estratégias de warm-start
+
+O parâmetro estrategia aceita um dos valores abaixo e define o UB inicial:
+
+. trivial: tour 0→1→…→N−1→0.
+. vizinho: vizinho mais próximo, partindo sempre do vértice 0.
+. fecho: inserção pelo fecho convexo. Formar a sub-rota inicial com o fecho convexo e inserir iterativamente os vértices internos de forma gulosa
+. TAT: chame twice_around_the_tree(D) e use o custo retornado como UB.
+. CHR: chame christofides(D) e use o custo retornado como UB.
+
+O UB deve ser sempre o custo recalculado por validar_e_custo. Nunca use um valor sem validação.
+
+Todas as estratégias devem registrar o tempo gasto só no warm-start, em tempo_heuristica_s. Para TAT e CHR, esse tempo é o do aproximativo correspondente.
+
+-- Algoritmo do Branch and Bound
+
+Estrutura de um nó: caminho parcial (lista de cidades visitadas, começando em 0), custo acumulado, matriz reduzida da submatriz de cidades abertas, LB, e profundidade.
+
+Redução de matriz: subtraia o mínimo de cada linha, depois o mínimo de cada coluna, somando todas as subtrações ao LB. Use um valor sentinela muito grande para representar ∞ e nunca subtraia de um ∞ sem tratamento explícito. Deixe o valor que usou comentado no código
+
+Ao final de cada execução, apague explicitamente as estruturas grandes (a pilha e as matrizes dos nós).
+
+Deve retornar um dicionário com as chaves do execucoes.csv: custo, tour, status, motivo_NA, tempo_total_s, tempo_heuristica_s, nos_expandidos, nos_podados, profundidade_max, lower_bound_final, melhor_ub_final, pico_memoria_MB, violacoes_reais, violacoes_arredondadas
+
+Quando o status for NA, custo e tour ficam None, mas os contadores parciais permanecem preenchidos.
+
+-- Contadores (defina exatamente assim e documente no código):
+. nos_expandidos: nós cujos filhos foram gerados;
+. nos_podados: filhos descartados por LB ≥ UB;
+. profundidade_max: maior nível de nó alcançado (a raiz é nível 0);
+. lower_bound_final: menor LB entre os nós ainda na pilha, quando a execução termina ou é interrompida. Se a pilha estiver vazia, use o UB final;
+. melhor_ub_final: menor custo de tour completo encontrado.
+
+Timeout (30 minutos): verifique a função time.perf_counter() no início de cada expansão de nó. Se o tempo decorrido passar de 1800 s, pare a busca, retorne os contadores parciais e marque status = NA e motivo_NA = timeout. Não lance exceção.
+
+-- Instrumentação (obrigatória)
+. Use time.perf_counter() para as subrotinas: matriz_reducao, expansao_no, calculo_lb, warmstart, busca_total.
+. Conte as chamadas de cada subrotina e registre o número em chamadas.
+. Todos os tempos e picos vão para um dicionário tempos passado por parâmetro, no formato longo que o profiling.csv exige.
+
+-- Validação (inclua no main)
+. Força bruta: gere 50 instâncias aleatórias com N ≤ 9, com coordenadas inteiras pequenas, e compare o custo do B&B com a permutação exaustiva calculada sobre a mesma matriz D. Repita para cada uma das cinco estratégias. Use assert.
+. Concordância entre estratégias: para cada instância da validação, o custo final deve ser idêntico nas cinco estratégias. Só o número de nós deve mudar. Use assert.
+. Ótimo publicado: rode burma14, gr17 e ulysses16 com a estratégia trivial. O custo deve bater com o publicado (3323, 2085 e 6859). Imprima a comparação.
+
+Não invente valores de ótimo. Se algo na especificação for ambíguo, diga explicitamente em vez de escolher em silêncio.
+
+
+3º Prompt:
+Você é um engenheiro de software. Preciso de um harness experimental em Python 3 para executar, coletar e registrar os experimentos de um trabalho acadêmico sobre o TSP. Priorize clareza, comentários curtos nas decisões não óbvias e nenhuma mudança silenciosa nos algoritmos.
+
+-- Arquivos existentes (não reescreva)
+aproximativos.py: ler_tsplib, construir_matriz, verificar_triangular, validar_e_custo, prim_mst, twice_around_the_tree, christofides.
+bnb.py: branch_and_bound(inst, D, estrategia, limite_s=1800), que retorna um dicionário com custo, tour, status, motivo_NA, tempo_total_s, tempo_heuristica_s, nos_expandidos, nos_podados, profundidade_max, lower_bound_final, melhor_ub_final, pico_memoria_MB, violacoes_reais, violacoes_arredondadas e o dicionário tempos com o profiling.
+
+Importe essas funções. Não altere os algoritmos.
+
+-- Componentes
+
+1. worker.py
+
+Lê a instância, constrói D e executa o algoritmo.
+Para TAT e CHR, chama o aproximativo correspondente e mede tempo_total_s em volta dela. estrategia é NA, e nos_expandidos, nos_podados, profundidade_max e lower_bound_final ficam NA.
+Para BnB, chama branch_and_bound.
+No modo tempo, tracemalloc fica desligado. No modo memoria, ele fica ligado e o resultado vai só para pico_memoria_MB.
+Grava o resultado e o dicionário tempos em um JSON no caminho --saida.
+Se a estratégia for fecho e a instância for EXPLICIT, não executa: grava status = NA e motivo_NA = nao_aplicavel.
+
+2. harness.py
+Lê a lista de instâncias de experimentos.json. Cada entrada tem nome, N, edge_weight_type, tem_coordenadas, otimo, otimo_fonte, grupo_N.
+Gera as tarefas: instância × algoritmo/estratégia × repetição, respeitando o modo.
+Retomada: antes de cada tarefa, verifica se a chave (instancia, algoritmo, estrategia, repeticao, modo) já está no CSV. Se estiver, pula. Os experimentos levam horas, então isso é obrigatório.
+Executa cada tarefa com subprocess.run([...worker...], timeout=1900), em um pool de --workers processos.
+Se o subprocess estourar o timeout externo, grava a linha com status = NA, motivo_NA = timeout_externo, contadores NA e pico_memoria_MB = NA.
+Se o worker retornar código diferente de zero, grava status = NA, motivo_NA = erro, e salva o stderr em logs/<chave>.err.
+Cada linha é escrita com append e flush logo após terminar a tarefa, para não perder dados se o processo cair.
+Imprime progresso no console: tarefa atual, tempo decorrido e resultado.
+
+3. ambiente.csv
+Campos: ambiente_id, data, sistema_operacional, cpu, nucleos_fisicos, nucleos_logicos, ram_GB, python_versao, numpy_versao, networkx_versao, modo, workers.
+
+4. execucoes.csv
+instancia, N, grupo_N, edge_weight_type, tem_coordenadas, otimo, otimo_fonte,
+desig_triangular, violacoes_reais, violacoes_arredondadas, algoritmo,
+estrategia_warmstart, modo, repeticao, custo, gap, tempo_total_s,
+tempo_heuristica_s, nos_expandidos, nos_podados, profundidade_max,
+lower_bound_final, melhor_ub_final, pico_memoria_MB, status, motivo_NA, ambiente_id
+gap = (custo − otimo) / otimo, calculado com o otimo do config. Use NA se status = NA.
+desig_triangular = sim quando violacoes_arredondadas = 0, senão nao.
+modo é tempo ou memoria. Linhas de modos diferentes são registradas separadamente, e a análise de tempo filtra modo = tempo.
+motivo_NA pode ser timeout, timeout_externo, erro, nao_aplicavel ou -.
+
+5. profiling.csv (formato longo)
+instancia, algoritmo, estrategia, modo, repeticao, subrotina, chamadas,
+tempo_s, memoria_pico_MB
+
+Escreva uma linha por subrotina presente no dicionário tempos do worker. Se a execução foi NA por timeout externo, não há profiling a gravar, e isso deve ficar explícito no relatório.
+
+-- Regras de medição
+. O tempo_total_s é medido apenas em volta da chamada ao algoritmo, dentro do worker. Não inclua o startup do Python nem os imports.
+. O limite_s do worker é 1800 s, e o timeout externo é 1900 s. A margem de 100 s garante que o timeout interno dispare primeiro e preserve os contadores parciais.
+. O número de workers é um parâmetro. Registre-o no ambiente.csv. Não use mais de 1 worker no modo tempo a menos que explicitamente pedido.
+. Não use gc.collect() como controle de memória entre execuções. Cada execução já roda em um processo separado.
+
+-- Modo piloto
+Adicione --piloto NOME, que executa só uma instância, com 1 repetição e todas as estratégias, e imprime o tempo total de cada uma. Esse modo serve para estimar o tempo do experimento completo antes de agendá-lo.
+
+-- Testes do próprio harness
+
+Inclua um teste_harness.py que verifica:
+. uma execução OK de burma14 com trivial gera uma linha em execucoes.csv com todos os campos preenchidos;
+. uma execução forçada a timeout (limite de 0,5 s em st70) gera status = NA;
+. rodar o harness duas vezes seguidas não duplica linhas (retomada funciona);
+o ambiente.csv é escrito uma única vez.
+
+-- Formato da resposta
+Os arquivos worker.py, harness.py e teste_harness.py, cada um em um bloco de código.
+Um exemplo de experimentos.json com as instâncias de burma14 a st70.
+Uma frase por função ou bloco explicando o que faz.
+
+Se algo na especificação for ambíguo, diga explicitamente em vez de escolher em silêncio.
+
+5º Prompt
+
+Você é um cientista de dados. Preciso de um script Python de análise para um trabalho acadêmico sobre o Problema do Caixeiro Viajante (TSP). O script deve ler os dados já coletados por um harness experimental e gerar um resumo em texto para o relatório. Priorize clareza, comentários curtos nas decisões não óbvias e nenhuma suposição silenciosa.
+
+-- Entradas
+resultados/execucoes.csv: uma linha por tarefa (instância × algoritmo × estratégia de warm-start × modo × repetição), com custo, gap, tempos, contadores de nós, pico de memória, status e motivo de NA.
+resultados/profiling.csv: tempo e memória por subrotina, em formato longo.
+resultados/features.csv: características geométricas por instância.
+resultados/ambiente.csv: uma linha por máquina usada.
+
+Valores NA são ausentes. Timeouts e não aplicáveis são categorias distintas e não devem ser agrupados.
+
+-- Quais análises devem ser produzidas:
+. Diagnóstico;
+. Complexidade empírica;
+. Custo por nó;
+. Warm-start pareado;
+. Qualidade dos aproximativos;
+. Sensibilidade;
+. Profiling;
+. Memória e verificação triangular;
+. Ressalvas;
+
+Grave a saída em resultados/analise.txt e imprima no console. Grave as tabelas intermediárias em CSV.
+
+-- Restrições
+Não invente valores. Todo número deve vir de um cálculo sobre as entradas.
+Se uma entrada faltar, o script deve parar com mensagem clara.
+Entregue uma lista curta explicando cada seção.

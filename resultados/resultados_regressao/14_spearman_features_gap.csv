@@ -1,0 +1,17 @@
+﻿algoritmo,feature,n,spearman_rho,p_valor,observacao
+TAT,razao_aspecto,6,-0.8116794499134278,0.0728,empates na feature
+TAT,prop_fecho_convexo,6,-0.7714285714285715,0.1104,
+TAT,entropia_espacial,6,0.7714285714285715,0.1112,
+TAT,densidade_clustering,6,-0.942857142857143,0.0166,
+TAT,grau_max_mst,6,0.29277002188455997,0.7012,empates na feature
+TAT,cv_dist_vizinho_proximo,6,-0.5428571428571429,0.3052,
+TAT,dist_media,6,0.7142857142857143,0.1394,
+TAT,dist_desvio,6,0.7142857142857143,0.1394,
+CHR,razao_aspecto,6,-0.898645105261295,0.0268,empates na feature
+CHR,prop_fecho_convexo,6,-1.0,0.0014,
+CHR,entropia_espacial,6,0.8857142857142858,0.0332,
+CHR,densidade_clustering,6,-0.8285714285714287,0.0608,
+CHR,grau_max_mst,6,0.29277002188455997,0.6872,empates na feature
+CHR,cv_dist_vizinho_proximo,6,-0.6,0.2412,
+CHR,dist_media,6,0.6,0.2432,
+CHR,dist_desvio,6,0.6,0.2432,

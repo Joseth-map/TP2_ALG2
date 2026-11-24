@@ -1,0 +1,15 @@
+﻿algoritmo,estrategia_warmstart,modo,execucoes,concluidas,timeouts,nao_aplicaveis
+BnB,CHR,memoria,12,4,8,0
+BnB,CHR,tempo,24,12,12,0
+BnB,TAT,memoria,12,4,8,0
+BnB,TAT,tempo,24,12,12,0
+BnB,fecho,memoria,12,2,4,6
+BnB,fecho,tempo,24,6,6,12
+BnB,trivial,memoria,12,4,8,0
+BnB,trivial,tempo,25,12,13,0
+BnB,vizinho,memoria,12,4,8,0
+BnB,vizinho,tempo,24,12,12,0
+CHR,NA,memoria,12,12,0,0
+CHR,NA,tempo,24,24,0,0
+TAT,NA,memoria,12,12,0,0
+TAT,NA,tempo,24,24,0,0

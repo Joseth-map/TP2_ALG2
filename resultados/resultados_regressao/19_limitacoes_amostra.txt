@@ -1,0 +1,15 @@
+Quantidade de instâncias: 12
+Quantidade de valores distintos de N: 11
+Quantidade de execuções: 253
+Execuções concluídas: 144
+Execuções com timeout: 91
+Execuções não aplicáveis: 18
+
+LIMITAÇÕES IMPORTANTES
+- Os resultados representam somente as instâncias testadas.
+- Timeouts causam censura: as instâncias mais difíceis podem estar sub-representadas nas regressões de tempo.
+- Não se deve interpretar R² elevado como prova de complexidade assintótica.
+- Instâncias TSPLIB diferentes podem ter estruturas distintas mesmo quando possuem o mesmo N.
+- Repetições da mesma instância não equivalem a novas instâncias independentes.
+- A análise multivariada de features depende da quantidade de instâncias distintas, não do número de execuções.
+- A memória medida por tracemalloc representa alocações Python e não necessariamente o RSS total do processo.

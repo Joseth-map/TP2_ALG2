@@ -1,0 +1,4 @@
+﻿ambiente_id,data,sistema_operacional,cpu,nucleos_fisicos,nucleos_logicos,ram_GB,python_versao,numpy_versao,networkx_versao,modo,workers
+22f91773-ba79-45e9-b987-9e5acfe41ce3,2026-11-23T22:30:02.477569-03:00,Windows-11-10.0.26200-SP0,"AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",8,16,31.385120391845703,3.13.1,2.3.5,3.7,tempo,1
+0394423f-6f5c-4e31-95e4-cdb5a1e46621,2026-11-23T22:15:37.600739-03:00,Windows-11-10.0.26300-SP0,"Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",2,4,15.745216369628906,3.15.2,2.5.5,3.7,memoria,1
+ab60fca9-36d0-4ddc-ab4c-0e1d2a140ab4,2026-11-23T22:43:14.734498-03:00,Windows-10-10.0.19045-SP0,"Intel64 Family 6 Model 60 Stepping 3, GenuineIntel",4,8,15.92351531982422,3.15.2,2.5.5,3.7,memoria,1

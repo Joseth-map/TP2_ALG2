@@ -1,0 +1,21 @@
+{
+  "estrategias": {
+    "BnB": ["trivial", "vizinho", "fecho", "TAT", "CHR"],
+    "TAT": ["NA"],
+    "CHR": ["NA"]
+  },
+  "instancias": [
+    {"nome": "burma14",   "N": 14, "edge_weight_type": "GEO",      "tem_coordenadas": true,  "otimo": 3323,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "ulysses16", "N": 16, "edge_weight_type": "GEO",      "tem_coordenadas": true,  "otimo": 6859,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "gr17",      "N": 17, "edge_weight_type": "EXPLICIT", "tem_coordenadas": false, "otimo": 2085,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "gr21",      "N": 21, "edge_weight_type": "EXPLICIT", "tem_coordenadas": false, "otimo": 2707,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "ulysses22", "N": 22, "edge_weight_type": "GEO",      "tem_coordenadas": true,  "otimo": 7013,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "gr24",      "N": 24, "edge_weight_type": "EXPLICIT", "tem_coordenadas": false, "otimo": 1272,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "fri26",     "N": 26, "edge_weight_type": "EXPLICIT", "tem_coordenadas": false, "otimo": 937,   "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "bayg29",    "N": 29, "edge_weight_type": "EXPLICIT", "tem_coordenadas": false, "otimo": 1610,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "bays29",    "N": 29, "edge_weight_type": "EXPLICIT", "tem_coordenadas": false, "otimo": 2020,  "otimo_fonte": "TSPLIB", "grupo_N": "<=40"},
+    {"nome": "att48",     "N": 48, "edge_weight_type": "ATT",      "tem_coordenadas": true,  "otimo": 10628, "otimo_fonte": "TSPLIB", "grupo_N": "41-75"},
+    {"nome": "berlin52",  "N": 52, "edge_weight_type": "EUC_2D",   "tem_coordenadas": true,  "otimo": 7542,  "otimo_fonte": "TSPLIB", "grupo_N": "41-75"},
+    {"nome": "st70",      "N": 70, "edge_weight_type": "EUC_2D",   "tem_coordenadas": true,  "otimo": 675,   "otimo_fonte": "TSPLIB", "grupo_N": "41-75"}
+  ]
+}

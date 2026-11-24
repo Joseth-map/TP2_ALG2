@@ -1,0 +1,5 @@
+﻿edge_weight_type,instancias,violacoes_reais_validas,violacoes_reais_positivas,violacoes_arredondadas_positivas
+ATT,1,0,0,0
+EUC_2D,2,2,0,2
+EXPLICIT,6,0,0,5
+GEO,3,0,0,0
